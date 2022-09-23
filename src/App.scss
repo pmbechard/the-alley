@@ -1,0 +1,12 @@
+@import './styles/Fonts';
+@import './styles/Variables';
+@import './styles/Mixins';
+
+@import './styles/MenuBar';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: $bodyFont;
+}
