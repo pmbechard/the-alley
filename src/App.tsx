@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { firebaseConfig } from './firebase/firebase-config';
@@ -10,7 +10,7 @@ import {
   User,
   signOut,
 } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { collection, getFirestore, getDocs } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
 import Navbar from './components/Static/Navbar';
@@ -19,11 +19,27 @@ import Shop from './components/Pages/Shop';
 import Footer from './components/Static/Footer';
 
 import './App.css';
+import { Product } from './components/ProductInterface';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
+  const [getProducts, setProducts] = useState<Product[]>();
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+
+  useEffect(() => {
+    fetchProducts();
+  });
+
+  const fetchProducts = async () => {
+    let products = await getDocs(collection(db, 'products'));
+    let productsList: Product[] = [];
+    products.forEach((product) => {
+      let id = product.id;
+      productsList.push({ id, ...product.data() } as Product);
+    });
+    setProducts(productsList);
+  };
 
   const signIn = () => {
     const provider = new GoogleAuthProvider();
@@ -67,7 +83,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/shop' element={<Shop db={db} />} />
+        <Route path='/shop' element={<Shop db={db} products={getProducts} />} />
       </Routes>
       <Footer />
     </BrowserRouter>
