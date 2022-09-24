@@ -17,6 +17,7 @@ import Shop from './components/Pages/Shop';
 
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -69,6 +70,7 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/shop' element={<Shop />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

@@ -1,0 +1,26 @@
+.footer {
+  background-color: #eee;
+  padding: 40px;
+  @include fCenter(column);
+  gap: 30px;
+
+  .social-links {
+    @include fCenter();
+    gap: 20px;
+
+    img {
+      height: 20px;
+      width: auto;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.7;
+        transform: scale(1.01);
+      }
+
+      &:active {
+        opacity: 1;
+      }
+    }
+  }
+}
