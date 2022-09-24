@@ -1,5 +1,5 @@
 .footer {
-  background-color: #eee;
+  background-color: $greyColour;
   padding: 40px;
   @include fCenter(column);
   gap: 30px;

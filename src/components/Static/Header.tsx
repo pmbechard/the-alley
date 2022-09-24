@@ -2,9 +2,9 @@ import { User } from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import signInIcon from '../img/signin.png';
-import cartIcon from '../img/cart.png';
-import signOutIcon from '../img/signout.png';
+import signInIcon from '../../img/signin.png';
+import cartIcon from '../../img/cart.png';
+import signOutIcon from '../../img/signout.png';
 
 interface Props {
   signIn: () => void;
@@ -15,15 +15,20 @@ interface Props {
 const Header: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
   return (
     <div className='header'>
-      <h1>
-        <Link to='/' className='header-title'>
-          The Alley
-        </Link>
-      </h1>
+      <div className='title-area'>
+        <h1>
+          <Link to='/' className='link header-title'>
+            The Alley
+          </Link>
+        </h1>
+        <p>
+          |&nbsp;&nbsp;&nbsp;<Link to='/store'>Shop</Link>
+        </p>
+      </div>
       {getUserInfo ? (
         <div className='signed-in-links'>
           <p className='user-greeting'>
-            Welcome back, {getUserInfo.displayName?.split(' ')[0]}
+            Hi, {getUserInfo.displayName?.split(' ')[0]}
           </p>
           <p className='header-link'>
             <img src={cartIcon} alt='cart' />

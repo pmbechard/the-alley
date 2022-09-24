@@ -3,7 +3,13 @@
   justify-content: space-between;
   height: $headerHeight;
   padding: 10px 40px;
-  // box-shadow: 0px 0.1px 2px black;
+  background-color: $greyColour;
+
+  .title-area {
+    @include fCenter();
+    align-items: baseline;
+    gap: 50px;
+  }
 
   img {
     height: 20px;
@@ -11,8 +17,7 @@
   }
 
   .header-title {
-    text-decoration: none;
-    color: black;
+    color: $blackColour;
     font-family: $titleFont;
     font-size: 54px;
   }

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import twitterIcon from '../img/twitter.png';
-import instagramIcon from '../img/instagram.png';
-import facebookIcon from '../img/facebook.png';
-import youtubeIcon from '../img/youtube.png';
-import linkedinIcon from '../img/linkedin.png';
-import githubIcon from '../img/github.png';
+import twitterIcon from '../../img/twitter.png';
+import instagramIcon from '../../img/instagram.png';
+import facebookIcon from '../../img/facebook.png';
+import youtubeIcon from '../../img/youtube.png';
+import linkedinIcon from '../../img/linkedin.png';
+import githubIcon from '../../img/github.png';
 
 interface Props {}
 

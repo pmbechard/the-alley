@@ -10,7 +10,6 @@ const Navbar: React.FC<Props> = () => {
       <li>Outdoor</li>
       <li>Books</li>
       <li>Music</li>
-      <li>Budget</li>
     </ol>
   );
 };

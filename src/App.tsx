@@ -11,13 +11,14 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import Header from './components/Header';
+import Header from './components/Static/Header';
+import Navbar from './components/Static/Navbar';
 import Home from './components/Pages/Home';
 import Shop from './components/Pages/Shop';
+import Footer from './components/Static/Footer';
 
 import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import 'react-slideshow-image/dist/styles.css';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);

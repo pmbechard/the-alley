@@ -1,0 +1,154 @@
+[
+  {
+    "id": 0,
+    "name": "Drop ENTR Mechanical Keyboard",
+    "price": "79",
+    "img": "https://massdrop-s3.imgix.net/product-images/drop-entr-mechanical-keyboard/FP/0Y5zI5Q5SA6WU5vYtP4T_PC2.png?auto=format&fm=jpg&fit=fill&w=820&h=547&bg=f0f0f0&dpr=2&chromasub=444&q=35",
+    "purchaseAt": "https://drop.com/buy/drop-entr-mechanical-keyboard?defaultSelectionIds=969835%2C969837",
+    "tags": ["budget", "electronics", "programming"]
+  },
+  {
+    "id": 1,
+    "name": "Dell - U2720QM Ultrasharp 27\" 4K IPS LED - USB-C Monitor",
+    "price": "555",
+    "img": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6404/6404051_sd.jpg",
+    "purchaseAt": "https://www.bestbuy.com/site/dell-u2720qm-ultrasharp-27-4k-ips-led-usb-c-monitor-display-hdmi-usb-black/6404051.p?skuId=6404051&ref=212&loc=1&gclid=Cj0KCQjw08aYBhDlARIsAA_gb0fpiFNdClRYOXjuAtwKU8oGQBDQiB7opNhAsbJgouho6UnjBipfX4YaAnV4EALw_wcB&gclsrc=aw.ds",
+    "tags": ["electronics", "programming"]
+  },
+  {
+    "id": 2,
+    "name": "Roland Aira Compact Voice Tweaker (E-4)",
+    "price": "200",
+    "img": "https://m.media-amazon.com/images/I/71EIEXzBN2L._AC_SX679_.jpg",
+    "purchaseAt": "https://www.amazon.com/Roland-Compact-Tweaker-Trransformation-High-Quality/dp/B0B1157KSJ/ref=sr_1_1?keywords=roland+e-4+voice+tweaker&qid=1662184870&sprefix=roland+e-4+%2Caps%2C316&sr=8-1",
+    "tags": ["electronics", "music"]
+  },
+  {
+    "id": 3,
+    "name": "Dirtywave M8 Tracker",
+    "price": "550",
+    "img": "https://cdn.shopify.com/s/files/1/0455/0485/6229/products/m8front_1100x.png?v=1635187892",
+    "purchaseAt": "https://dirtywave.com/products/m8-tracker",
+    "tags": ["electronics", "music"]
+  },
+  {
+    "id": 4,
+    "name": "LEGO James Bond Aston Martin DB5 10262 Building Kit",
+    "price": "245",
+    "img": "https://m.media-amazon.com/images/I/81fdkBKAx0L._AC_SX679_.jpg",
+    "purchaseAt": "https://www.amazon.com/LEGO-Creator-Expert-Martin-Building/dp/B07FQ3KF2B/ref=sr_1_2?crid=1RJGZ2TAS2W7G&keywords=lego+bond&qid=1662185270&sprefix=lego+bond%2Caps%2C443&sr=8-2",
+    "tags": ["other"]
+  },
+  {
+    "id": 5,
+    "name": "Design Patterns, 1st Edition",
+    "price": "35",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/51szD9HC9pL._SX395_BO1,204,203,200_.jpg",
+    "purchaseAt": "https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1?crid=KN1G98PAW3Q&keywords=design+patterns&qid=1662185472&sprefix=design+patterns%2Caps%2C330&sr=8-1",
+    "tags": ["budget", "books"]
+  },
+  {
+    "id": 6,
+    "name": "Cracking the Coding Interview, 6th Edition",
+    "price": "26",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/41oYsXjLvZL._SX348_BO1,204,203,200_.jpg",
+    "purchaseAt": "https://www.amazon.com/Cracking-Coding-Interview-Programming-Questions/dp/0984782850/ref=sr_1_1?keywords=crack+the+coding+interview&qid=1662185565&sprefix=crack+the+codin%2Caps%2C332&sr=8-1",
+    "tags": ["budget", "books"]
+  },
+  {
+    "id": 7,
+    "name": "EZGoal Hockey Folding Pro Goal",
+    "price": "129",
+    "img": "https://m.media-amazon.com/images/I/A1kFRldX8CL._AC_SX679_.jpg",
+    "purchaseAt": "https://www.amazon.com/EZGoal-Hockey-Folding-2-Inch-White/dp/B0093U9RUC/ref=sr_1_9?crid=1UH3SM8C3XVLR&keywords=bauer+vapor+hyperlite&qid=1662185762&sprefix=bauer+vapor+hyperlite+%2Caps%2C316&sr=8-9",
+    "tags": ["budget", "hockey"]
+  },
+  {
+    "id": 8,
+    "name": "IDS Pro-Shot Puck",
+    "price": "10",
+    "img": "https://m.media-amazon.com/images/I/41R5-ZcGaRL._AC_.jpg",
+    "purchaseAt": "https://www.amazon.com/Ideal-Design-Sports-Inline-Hockey/dp/B0092M20ZK/ref=sr_1_5?crid=1ZFC46VWB89ZF&keywords=inline+puck&qid=1662185844&sprefix=inline+p%2Caps%2C597&sr=8-5",
+    "tags": ["budget", "hockey"]
+  },
+  {
+    "id": 9,
+    "name": "Bauer SH100 Street Hockey Stick",
+    "price": "10",
+    "img": "https://i1.adis.ws/i/bauer/692161_01/SH100StreetHockeyStick?$large$",
+    "purchaseAt": "https://www.bauer.com/en-US/street-roller-hockey/street-hockey-sticks/sh100-street-hockey-stick-692161.html?cgid=Street%20Hockey%20Sticks#start=1",
+    "tags": ["budget", "hockey"]
+  },
+  {
+    "id": 10,
+    "name": "Carhartt Men's Yukon Extremes Loose Fit Insulated Biberall",
+    "price": "200",
+    "img": "https://m.media-amazon.com/images/I/61tZ0606hKL._AC_UX679_.jpg",
+    "purchaseAt": "https://www.amazon.com/Carhartt-Yukon-Extremes-Insulated-Biberall/dp/B08KG64JGG",
+    "tags": ["clothes"]
+  },
+  {
+    "id": 11,
+    "name": "Louis Vuitton Ribbed Damier Crewneck",
+    "price": "1215",
+    "img": "https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:1400/output=quality:90/compress/OK6Dr2agSRigJcybHFSm",
+    "purchaseAt": "https://www.grailed.com/listings/33410234-louis-vuitton-x-virgil-abloh-louis-vuitton-ribbed-damier-crewneck?utm_source=google&utm_medium=cpc&utm_campaign=GSN%20-%20General%20-%20tops%7C0-39%20days%7CDomestic%7C1000%2B%7CNew&utm_term=sem_nonbranded&utm_content=GSN%20General%20-%20tops%7C0-39%20days%7CDomestic%7C1000%2B%7CNew%7C0%20Prior%20Sales&device=c&keyword=&matchtype=&productid=33410234&gclid=CjwKCAjwvNaYBhA3EiwACgndgpUEf5o9eLMG6VwyBZy-8IjEG0LWWR_fQWim4NSZQ621t4OQofoRCRoC1IUQAvD_BwE",
+    "tags": ["clothes"]
+  },
+  {
+    "id": 12,
+    "name": "Creality Ender-3 3D Printer",
+    "price": "190",
+    "img": "https://img.staticdj.com/2d67317a40eac6bd812f86594f105dc3_750x.png",
+    "purchaseAt": "https://store.creality.com/products/ender-3-3d-printer-4za7?spm=..product_03f563e2-fc60-4dd4-b54a-58b44213d60a.header_1.1",
+    "tags": ["budget", "electronics"]
+  },
+  {
+    "id": 13,
+    "name": "Meta Quest 2 VR Headset",
+    "price": "400",
+    "img": "https://images-na.ssl-images-amazon.com/images/I/31uagjqD8DL._SX300_SY300_QL70_FMwebp_.jpg",
+    "purchaseAt": "https://store.facebook.com/quest/products/quest-2",
+    "tags": ["electronics"]
+  },
+  {
+    "id": 14,
+    "name": "Roland SP-404 MKII",
+    "price": "560",
+    "img": "https://m.media-amazon.com/images/I/91jx69qJYBL._AC_SY879_.jpg",
+    "purchaseAt": "https://www.amazon.com/Roland-SP-404MKII-Creative-Polyphony-SP-404MK2/dp/B09J1TMSYV/ref=sr_1_3?keywords=sp404&qid=1662376013&sr=8-3",
+    "tags": ["electronics", "music"]
+  },
+  {
+    "id": 15,
+    "name": "iPad mini",
+    "price": "500",
+    "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/ipad-mini-digitalmat-gallery-1-202111?wid=730&hei=666&fmt=png-alpha&.v=1635183174000",
+    "purchaseAt": "https://www.apple.com/shop/buy-ipad",
+    "tags": ["electronics"]
+  },
+  {
+    "id": 16,
+    "name": "Apple Pencil (2nd generation)",
+    "price": "130",
+    "img": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MU8F2?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=1540596407165",
+    "purchaseAt": "https://www.apple.com/shop/product/MU8F2AM/A/apple-pencil-2nd-generation",
+    "tags": ["budget", "electronics"]
+  },
+  {
+    "id": 17,
+    "name": "Alesis Nitro Mesh Electronic Drum Set",
+    "price": "450",
+    "img": "https://media.sweetwater.com/api/i/q-82__f-webp__ha-1483641b17608746__hmac-a57f7b467a9cdf6d61d22ec33b539e1372682824/images/items/750/NitroMeshKit-large.jpg.auto.webp",
+    "purchaseAt": "https://www.sweetwater.com/store/detail/NitroMeshKit--alesis-nitro-mesh-electronic-drum-set",
+    "tags": ["electronics", "music"]
+  },
+  {
+    "id": 18,
+    "name": "Focusrite Scarlett 2i2 3rd Gen USB Audio Interface",
+    "price": "180",
+    "img": "https://media.sweetwater.com/api/i/q-82__f-webp__ha-90540d1bdc7911c4__hmac-191befb88f2faa6f1c9b36a26e168a5b7a4c2b4b/images/items/750/Scarlet2i2G3-large.jpg.auto.webp",
+    "purchaseAt": "https://www.sweetwater.com/store/detail/Scarlet2i2G3--focusrite-scarlett-2i2-3rd-gen-usb-audio-interface",
+    "tags": ["electronics", "music"]
+  }
+]
