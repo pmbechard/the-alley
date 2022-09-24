@@ -5,14 +5,23 @@ import { Link } from 'react-router-dom';
 import signInIcon from '../../img/signin.png';
 import cartIcon from '../../img/cart.png';
 import signOutIcon from '../../img/signout.png';
+import AdminPanelBtn from '../Admin/AdminPanelBtn';
 
 interface Props {
   signIn: () => void;
   getUserInfo: User | null;
   signUserOut: () => void;
+  showAdminPanel: boolean;
+  setShowAdminPanel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Header: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
+const Header: React.FC<Props> = ({
+  signIn,
+  getUserInfo,
+  signUserOut,
+  showAdminPanel,
+  setShowAdminPanel,
+}) => {
   return (
     <div className='header'>
       <div className='title-area'>
@@ -41,6 +50,12 @@ const Header: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
             <img src={signOutIcon} alt='sign out' />
             Sign out
           </p>
+          {getUserInfo.email === 'peyton.bechard@gmail.com' && (
+            <AdminPanelBtn
+              showAdminPanel={showAdminPanel}
+              setShowAdminPanel={setShowAdminPanel}
+            />
+          )}
         </div>
       ) : (
         <p onClick={signIn} className='header-link'>

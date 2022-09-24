@@ -19,11 +19,13 @@ import Shop from './components/Pages/Shop';
 import Footer from './components/Static/Footer';
 
 import './App.css';
-import { Product } from './components/ProductInterface';
+import { Product } from './components/Interfaces/ProductInterface';
+import AdminPanel from './components/Admin/AdminPanel';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
   const [getProducts, setProducts] = useState<Product[]>();
+  const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
@@ -79,6 +81,8 @@ const App = () => {
         signIn={signIn}
         signUserOut={signUserOut}
         getUserInfo={getUserInfo}
+        showAdminPanel={showAdminPanel}
+        setShowAdminPanel={setShowAdminPanel}
       />
       <Navbar />
       <Routes>
@@ -86,6 +90,7 @@ const App = () => {
         <Route path='/shop' element={<Shop db={db} products={getProducts} />} />
       </Routes>
       <Footer />
+      {showAdminPanel && <AdminPanel />}
     </BrowserRouter>
   );
 };

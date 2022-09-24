@@ -1,0 +1,17 @@
+#admin-panel-btn {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+  background-color: rgb(189, 189, 255);
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid $blackColour;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
+}

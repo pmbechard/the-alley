@@ -1,5 +1,5 @@
 import { Firestore } from 'firebase/firestore';
-import { Product } from '../ProductInterface';
+import { Product } from '../Interfaces/ProductInterface';
 
 interface Props {
   db: Firestore;
@@ -9,10 +9,13 @@ interface Props {
 const Shop: React.FC<Props> = ({ db, products }) => {
   return (
     <div className='shop-container'>
-      {products &&
+      {products ? (
         products.map((product) => {
           return <p key={product.id}>{product.name}</p>;
-        })}
+        })
+      ) : (
+        <h3>Loading...</h3>
+      )}
     </div>
   );
 };
