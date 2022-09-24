@@ -22,7 +22,10 @@ const Header: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
           </Link>
         </h1>
         <p>
-          |&nbsp;&nbsp;&nbsp;<Link to='/store'>Shop</Link>
+          |&nbsp;&nbsp;&nbsp;
+          <Link to='/store' className='link'>
+            Shop
+          </Link>
         </p>
       </div>
       {getUserInfo ? (
