@@ -11,7 +11,7 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import MenuBar from './components/MenuBar';
+import Header from './components/Header';
 import Home from './components/Pages/Home';
 import Shop from './components/Pages/Shop';
 
@@ -58,7 +58,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <MenuBar
+      <Header
         signIn={signIn}
         signUserOut={signUserOut}
         getUserInfo={getUserInfo}

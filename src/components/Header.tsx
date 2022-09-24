@@ -2,15 +2,19 @@ import { User } from 'firebase/auth';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import signInIcon from '../img/signin.png';
+import cartIcon from '../img/cart.png';
+import signOutIcon from '../img/signout.png';
+
 interface Props {
   signIn: () => void;
   getUserInfo: User | null;
   signUserOut: () => void;
 }
 
-const MenuBar: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
+const Header: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
   return (
-    <div className='navbar'>
+    <div className='header'>
       <h1>
         <Link to='/' className='header-title'>
           The Alley
@@ -18,14 +22,21 @@ const MenuBar: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
       </h1>
       {getUserInfo ? (
         <div className='signed-in-links'>
-          <p className='user-greeting'>Hello, {getUserInfo.displayName}</p>
-          <p className='header-link'>Cart</p>
+          <p className='user-greeting'>
+            Welcome back, {getUserInfo.displayName?.split(' ')[0]}
+          </p>
+          <p className='header-link'>
+            <img src={cartIcon} alt='cart' />
+            Cart
+          </p>
           <p onClick={signUserOut} className='header-link'>
+            <img src={signOutIcon} alt='sign out' />
             Sign out
           </p>
         </div>
       ) : (
         <p onClick={signIn} className='header-link'>
+          <img src={signInIcon} alt='user' />
           Sign in
         </p>
       )}
@@ -33,4 +44,4 @@ const MenuBar: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
   );
 };
 
-export default MenuBar;
+export default Header;
