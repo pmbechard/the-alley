@@ -5,7 +5,7 @@
     "price": "79",
     "img": "https://massdrop-s3.imgix.net/product-images/drop-entr-mechanical-keyboard/FP/0Y5zI5Q5SA6WU5vYtP4T_PC2.png?auto=format&fm=jpg&fit=fill&w=820&h=547&bg=f0f0f0&dpr=2&chromasub=444&q=35",
     "purchaseAt": "https://drop.com/buy/drop-entr-mechanical-keyboard?defaultSelectionIds=969835%2C969837",
-    "tags": ["budget", "electronics", "programming"]
+    "tags": ["budget", "electronics", "hot"]
   },
   {
     "id": 1,
@@ -13,7 +13,7 @@
     "price": "555",
     "img": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6404/6404051_sd.jpg",
     "purchaseAt": "https://www.bestbuy.com/site/dell-u2720qm-ultrasharp-27-4k-ips-led-usb-c-monitor-display-hdmi-usb-black/6404051.p?skuId=6404051&ref=212&loc=1&gclid=Cj0KCQjw08aYBhDlARIsAA_gb0fpiFNdClRYOXjuAtwKU8oGQBDQiB7opNhAsbJgouho6UnjBipfX4YaAnV4EALw_wcB&gclsrc=aw.ds",
-    "tags": ["electronics", "programming"]
+    "tags": ["electronics", "hot"]
   },
   {
     "id": 2,
@@ -101,7 +101,7 @@
     "price": "190",
     "img": "https://img.staticdj.com/2d67317a40eac6bd812f86594f105dc3_750x.png",
     "purchaseAt": "https://store.creality.com/products/ender-3-3d-printer-4za7?spm=..product_03f563e2-fc60-4dd4-b54a-58b44213d60a.header_1.1",
-    "tags": ["budget", "electronics"]
+    "tags": ["budget", "electronics", "hot"]
   },
   {
     "id": 13,

@@ -23,7 +23,7 @@ const Header: React.FC<Props> = ({ signIn, getUserInfo, signUserOut }) => {
         </h1>
         <p>
           |&nbsp;&nbsp;&nbsp;
-          <Link to='/store' className='link'>
+          <Link to='/shop' className='link'>
             Shop
           </Link>
         </p>

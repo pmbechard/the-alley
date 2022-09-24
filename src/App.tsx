@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { firebaseConfig } from './firebase/firebase-config';
@@ -10,6 +10,7 @@ import {
   User,
   signOut,
 } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
 import Navbar from './components/Static/Navbar';
@@ -21,10 +22,8 @@ import './App.css';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
-
-  useEffect(() => {
-    initializeApp(firebaseConfig);
-  }, []);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
   const signIn = () => {
     const provider = new GoogleAuthProvider();
@@ -68,7 +67,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/shop' element={<Shop />} />
+        <Route path='/shop' element={<Shop db={db} />} />
       </Routes>
       <Footer />
     </BrowserRouter>
