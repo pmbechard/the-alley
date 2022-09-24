@@ -18,7 +18,6 @@ import Shop from './components/Pages/Shop';
 import Footer from './components/Static/Footer';
 
 import './App.css';
-import 'react-slideshow-image/dist/styles.css';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
