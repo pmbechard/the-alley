@@ -1,0 +1,15 @@
+.navbar {
+  @include fCenter();
+  list-style: none;
+  gap: 30px;
+  height: $navbarHeight;
+  font-weight: bolder;
+
+  li {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

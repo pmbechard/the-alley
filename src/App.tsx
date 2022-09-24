@@ -16,6 +16,7 @@ import Home from './components/Pages/Home';
 import Shop from './components/Pages/Shop';
 
 import './App.css';
+import Navbar from './components/Navbar';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -63,6 +64,7 @@ const App = () => {
         signUserOut={signUserOut}
         getUserInfo={getUserInfo}
       />
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/shop' element={<Shop />} />
