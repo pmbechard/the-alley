@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import closeIcon from '../../img/close.png';
+import { Product } from '../Interfaces/ProductInterface';
 import AdminAddProductsPage from './AdminAddProductsPage';
 import AdminMainPage from './AdminMainPage';
 import AdminModifyProductsPage from './AdminModifyProductsPage';
@@ -8,9 +9,17 @@ import AdminUserPermissionsPage from './AdminUserPermissionsPage';
 
 interface Props {
   setShowAdminPanel: React.Dispatch<React.SetStateAction<boolean>>;
+  addProductToFirebase: (product: Product) => void;
+  getProducts: Product[] | undefined;
+  setProducts: React.Dispatch<React.SetStateAction<Product[] | undefined>>;
 }
 
-const AdminPanel: React.FC<Props> = ({ setShowAdminPanel }) => {
+const AdminPanel: React.FC<Props> = ({
+  setShowAdminPanel,
+  addProductToFirebase,
+  getProducts,
+  setProducts,
+}) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
 
   useEffect(() => {
@@ -34,7 +43,11 @@ const AdminPanel: React.FC<Props> = ({ setShowAdminPanel }) => {
           <AdminMainPage setAdminPage={setAdminPage} />
         )}
         {getAdminPage === 'addProducts' && (
-          <AdminAddProductsPage setAdminPage={setAdminPage} />
+          <AdminAddProductsPage
+            setAdminPage={setAdminPage}
+            addProductToFirebase={addProductToFirebase}
+            getProducts={getProducts}
+          />
         )}
         {getAdminPage === 'modifyProducts' && (
           <AdminModifyProductsPage setAdminPage={setAdminPage} />

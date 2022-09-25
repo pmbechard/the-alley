@@ -10,7 +10,13 @@ import {
   User,
   signOut,
 } from 'firebase/auth';
-import { collection, getFirestore, getDocs } from 'firebase/firestore';
+import {
+  collection,
+  getFirestore,
+  getDocs,
+  setDoc,
+  doc,
+} from 'firebase/firestore';
 
 import Header from './components/Static/Header';
 import Navbar from './components/Static/Navbar';
@@ -41,6 +47,22 @@ const App = () => {
       productsList.push({ id, ...product.data() } as Product);
     });
     setProducts(productsList);
+  };
+
+  const addProductToFirebase = async (product: Product): Promise<void> => {
+    try {
+      await setDoc(doc(db, 'products', product.id), {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        description: product.description,
+        img: product.img,
+        tags: product.tags,
+      });
+    } catch (e) {
+      // TODO: Add Error message on page
+      console.log(e);
+    }
   };
 
   const signIn = () => {
@@ -90,7 +112,14 @@ const App = () => {
         <Route path='/shop' element={<Shop db={db} products={getProducts} />} />
       </Routes>
       <Footer />
-      {showAdminPanel && <AdminPanel setShowAdminPanel={setShowAdminPanel} />}
+      {showAdminPanel && (
+        <AdminPanel
+          setShowAdminPanel={setShowAdminPanel}
+          addProductToFirebase={addProductToFirebase}
+          getProducts={getProducts}
+          setProducts={setProducts}
+        />
+      )}
     </BrowserRouter>
   );
 };
