@@ -90,7 +90,7 @@ const App = () => {
         <Route path='/shop' element={<Shop db={db} products={getProducts} />} />
       </Routes>
       <Footer />
-      {showAdminPanel && <AdminPanel />}
+      {showAdminPanel && <AdminPanel setShowAdminPanel={setShowAdminPanel} />}
     </BrowserRouter>
   );
 };
