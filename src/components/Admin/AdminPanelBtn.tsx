@@ -12,14 +12,12 @@ const AdminPanelBtn: React.FC<Props> = ({
 }) => {
   return (
     <>
-      {!showAdminPanel && (
-        <img
-          id='admin-panel-btn'
-          onClick={() => setShowAdminPanel(true)}
-          src={adminIcon}
-          alt='admin'
-        ></img>
-      )}
+      <img
+        id='admin-panel-btn'
+        onClick={() => setShowAdminPanel(true)}
+        src={adminIcon}
+        alt='admin'
+      ></img>
     </>
   );
 };

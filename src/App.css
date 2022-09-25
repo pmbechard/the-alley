@@ -177,9 +177,9 @@
 .admin-panel {
   position: absolute;
   right: calc(50% - 200px);
-  top: 100px;
+  top: 50px;
   width: 400px;
-  height: 600px;
+  height: 700px;
   background-color: rgb(189, 189, 255);
   border-radius: 8px;
   display: flex;
@@ -188,10 +188,11 @@
   align-items: center;
   justify-content: flex-start;
   padding: 40px;
+  overflow: auto;
   -webkit-animation: slide-in 0.4s ease-in-out;
           animation: slide-in 0.4s ease-in-out;
 }
-.admin-panel .close-panel-btn {
+.admin-panel .panel-btn {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -200,11 +201,14 @@
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
 }
-.admin-panel .close-panel-btn:hover {
+.admin-panel .panel-btn:hover {
   opacity: 0.7;
 }
-.admin-panel .close-panel-btn:active {
+.admin-panel .panel-btn:active {
   opacity: 1;
+}
+.admin-panel .back-btn {
+  left: 5px;
 }
 .admin-panel h2 {
   margin-top: 40px;
@@ -243,6 +247,27 @@
     right: calc(50% - 200px);
   }
 }
+.admin-panel-form {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 90%;
+}
+.admin-panel-form input,
+.admin-panel-form select,
+.admin-panel-form fieldset,
+.admin-panel-form textarea {
+  width: 100%;
+  padding: 10px;
+}
+.admin-panel-form fieldset {
+  color: #111;
+  border: 2px solid #111;
+}
+
 * {
   padding: 0;
   margin: 0;

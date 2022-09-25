@@ -11,18 +11,19 @@
 .admin-panel {
   position: absolute;
   right: calc(50% - 200px);
-  top: 100px;
+  top: 50px;
   width: 400px;
-  height: 600px;
+  height: 700px;
   background-color: rgb(189, 189, 255);
   border-radius: 8px;
   @include fCenter(column);
   justify-content: flex-start;
   padding: 40px;
+  overflow: auto;
 
   animation: slide-in 0.4s ease-in-out;
 
-  .close-panel-btn {
+  .panel-btn {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -38,6 +39,10 @@
     &:active {
       opacity: 1;
     }
+  }
+
+  .back-btn {
+    left: 5px;
   }
 
   h2 {
@@ -71,5 +76,25 @@
 
   100% {
     right: calc(50% - 200px);
+  }
+}
+
+.admin-panel-form {
+  margin: 20px 0;
+  @include fCenter(column);
+  gap: 30px;
+  width: 90%;
+
+  input,
+  select,
+  fieldset,
+  textarea {
+    width: 100%;
+    padding: 10px;
+  }
+
+  fieldset {
+    color: $blackColour;
+    border: 2px solid $blackColour;
   }
 }
