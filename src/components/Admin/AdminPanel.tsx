@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import closeIcon from '../../img/close.png';
-import { Product } from '../Interfaces/ProductInterface';
+import { ModifiedProduct, Product } from '../Interfaces/ProductInterface';
 import AdminAddProductsPage from './AdminAddProductsPage';
 import AdminMainPage from './AdminMainPage';
 import AdminModifyProductsPage from './AdminModifyProductsPage';
@@ -14,6 +14,11 @@ interface Props {
   addProductToFirebase: (product: Product) => void;
   getProducts: Product[] | undefined;
   setProducts: React.Dispatch<React.SetStateAction<Product[] | undefined>>;
+  getProductByName: (name: string) => Promise<Product | null>;
+  updateProduct: (
+    modifiedProduct: ModifiedProduct,
+    name: string
+  ) => Promise<void>;
 }
 
 const AdminPanel: React.FC<Props> = ({
@@ -21,6 +26,8 @@ const AdminPanel: React.FC<Props> = ({
   addProductToFirebase,
   getProducts,
   setProducts,
+  getProductByName,
+  updateProduct,
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
 
@@ -52,7 +59,12 @@ const AdminPanel: React.FC<Props> = ({
           />
         )}
         {getAdminPage === 'modifyProducts' && (
-          <AdminModifyProductsPage setAdminPage={setAdminPage} />
+          <AdminModifyProductsPage
+            setAdminPage={setAdminPage}
+            getProducts={getProducts}
+            getProductByName={getProductByName}
+            updateProduct={updateProduct}
+          />
         )}
         {getAdminPage === 'removeProducts' && (
           <AdminRemoveProductsPage setAdminPage={setAdminPage} />

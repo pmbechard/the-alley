@@ -28,7 +28,6 @@ const AdminAddProductsPage: React.FC<Props> = ({
     }
 
     const newProduct: Product = {
-      id: `${getProducts?.length || 0}`,
       name: `${nameRef.current?.value}`,
       price: parseFloat(`${priceRef.current?.value}`),
       description: `${descriptionRef.current?.value}`,
@@ -76,14 +75,22 @@ const AdminAddProductsPage: React.FC<Props> = ({
         ></textarea>
 
         <fieldset>
-          <legend>Image Upload</legend>
+          <legend>Image URL</legend>
+          <input
+            type='text'
+            name='image'
+            ref={imageRef}
+            id='products-img-upload'
+          />
+          {/* FIXME: Add image upload capability */}
+          {/* <legend>Image Upload</legend>
           <input
             type='file'
             name='image'
             ref={imageRef}
             id='product-img-upload'
             accept='image/png, image/gif, image/jpeg'
-          />
+          /> */}
         </fieldset>
         <fieldset>
           <legend>Tags</legend>

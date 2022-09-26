@@ -11,7 +11,7 @@ const Shop: React.FC<Props> = ({ db, products }) => {
     <div className='shop-container'>
       {products ? (
         products.map((product) => {
-          return <p key={product.id}>{product.name}</p>;
+          return <p key={product.name.replace(' ', '-')}>{product.name}</p>;
         })
       ) : (
         <h3>Loading...</h3>

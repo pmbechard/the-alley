@@ -1,8 +1,15 @@
 export interface Product {
-  id: string;
   name: string;
   price: number;
   description: string;
   img: string;
   tags: string[];
+}
+
+export interface ModifiedProduct {
+  name?: string;
+  price?: number;
+  description?: string;
+  img?: string;
+  tags?: string[];
 }

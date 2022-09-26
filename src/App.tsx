@@ -16,6 +16,8 @@ import {
   getDocs,
   setDoc,
   doc,
+  getDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
@@ -25,7 +27,10 @@ import Shop from './components/Pages/Shop';
 import Footer from './components/Static/Footer';
 
 import './App.css';
-import { Product } from './components/Interfaces/ProductInterface';
+import {
+  ModifiedProduct,
+  Product,
+} from './components/Interfaces/ProductInterface';
 import AdminPanel from './components/Admin/AdminPanel';
 
 const App = () => {
@@ -43,16 +48,14 @@ const App = () => {
     let products = await getDocs(collection(db, 'products'));
     let productsList: Product[] = [];
     products.forEach((product) => {
-      let id = product.id;
-      productsList.push({ id, ...product.data() } as Product);
+      productsList.push({ ...product.data() } as Product);
     });
     setProducts(productsList);
   };
 
   const addProductToFirebase = async (product: Product): Promise<void> => {
     try {
-      await setDoc(doc(db, 'products', product.id), {
-        id: product.id,
+      await setDoc(doc(db, 'products', product.name), {
         name: product.name,
         price: product.price,
         description: product.description,
@@ -60,9 +63,25 @@ const App = () => {
         tags: product.tags,
       });
     } catch (e) {
-      // TODO: Add Error message on page
       console.log(e);
     }
+    // TODO: Add Error/Success message on page
+  };
+
+  const getProductByName = async (name: string): Promise<Product | null> => {
+    if (!name) return null;
+    const docRef = doc(db, 'products', name);
+    const docSnap = await getDoc(docRef);
+    return { ...(docSnap.data() as Product) };
+  };
+
+  const updateProduct = async (
+    modifiedProduct: ModifiedProduct,
+    name: string
+  ) => {
+    await updateDoc(doc(db, 'products', name), {
+      ...modifiedProduct,
+    });
   };
 
   const signIn = () => {
@@ -118,6 +137,8 @@ const App = () => {
           addProductToFirebase={addProductToFirebase}
           getProducts={getProducts}
           setProducts={setProducts}
+          getProductByName={getProductByName}
+          updateProduct={updateProduct}
         />
       )}
     </BrowserRouter>
