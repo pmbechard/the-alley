@@ -16,6 +16,11 @@ const AdminMainPage: React.FC<Props> = ({ setAdminPage }) => {
       <button onClick={() => setAdminPage('removeProducts')}>
         Remove Products
       </button>
+      <h2>Manage Sales</h2>
+      <button onClick={() => setAdminPage('scheduleSale')}>
+        Schedule a Sale
+      </button>
+      <button onClick={() => setAdminPage('modifySale')}>Modify a Sale</button>
       <h2>Manage Users</h2>
       <button onClick={() => setAdminPage('userPermissions')}>
         Modify User Permissions

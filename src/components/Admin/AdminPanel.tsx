@@ -4,7 +4,9 @@ import { Product } from '../Interfaces/ProductInterface';
 import AdminAddProductsPage from './AdminAddProductsPage';
 import AdminMainPage from './AdminMainPage';
 import AdminModifyProductsPage from './AdminModifyProductsPage';
+import AdminModifySale from './AdminModifySale';
 import AdminRemoveProductsPage from './AdminRemoveProductsPage';
+import AdminScheduleSale from './AdminScheduleSale';
 import AdminUserPermissionsPage from './AdminUserPermissionsPage';
 
 interface Props {
@@ -55,6 +57,14 @@ const AdminPanel: React.FC<Props> = ({
         {getAdminPage === 'removeProducts' && (
           <AdminRemoveProductsPage setAdminPage={setAdminPage} />
         )}
+
+        {getAdminPage === 'scheduleSale' && (
+          <AdminScheduleSale setAdminPage={setAdminPage} />
+        )}
+        {getAdminPage === 'modifySale' && (
+          <AdminModifySale setAdminPage={setAdminPage} />
+        )}
+
         {getAdminPage === 'userPermissions' && (
           <AdminUserPermissionsPage setAdminPage={setAdminPage} />
         )}
