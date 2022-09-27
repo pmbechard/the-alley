@@ -27,16 +27,27 @@ const AdminAddProductsPage: React.FC<Props> = ({
       tagsElements && tags.push(`${tagsElements[i].value}`);
     }
 
-    const newProduct: Product = {
-      name: `${nameRef.current?.value}`,
-      price: parseFloat(`${priceRef.current?.value}`),
-      description: `${descriptionRef.current?.value}`,
-      img: `${imageRef.current?.value}`,
-      tags: tags,
-    };
+    if (
+      !nameRef.current?.value ||
+      !priceRef.current?.value ||
+      !descriptionRef.current?.value ||
+      !imageRef.current?.value ||
+      tags.length === 0
+    ) {
+      // FIXME: find a more elegant way to deal with form validation
+      alert('Please fill in the entire form to continue.');
+    } else {
+      const newProduct: Product = {
+        name: `${nameRef.current?.value}`,
+        price: parseFloat(`${priceRef.current?.value}`),
+        description: `${descriptionRef.current?.value}`,
+        img: `${imageRef.current?.value}`,
+        tags: tags,
+      };
 
-    addProductToFirebase(newProduct);
-    setAdminPage('main');
+      addProductToFirebase(newProduct);
+      setAdminPage('main');
+    }
   };
 
   return (

@@ -62,6 +62,7 @@ const App = () => {
         img: product.img,
         tags: product.tags,
       });
+      
     } catch (e) {
       console.log(e);
     }

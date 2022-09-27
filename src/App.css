@@ -210,8 +210,14 @@
 .admin-panel .back-btn {
   left: 5px;
 }
+.admin-panel h1 {
+  margin-bottom: 20px;
+}
 .admin-panel h2 {
-  margin-top: 40px;
+  margin-top: 20px;
+}
+.admin-panel p {
+  margin: 10px;
 }
 .admin-panel button {
   border: 1px solid #111;

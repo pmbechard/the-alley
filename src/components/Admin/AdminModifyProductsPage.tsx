@@ -96,7 +96,7 @@ const AdminModifyProductsPage: React.FC<Props> = ({
             name='price'
             ref={priceRef}
             id='product-price-input'
-            defaultValue={getCurrentProduct.price}
+            value={getCurrentProduct.price}
           />
           <textarea
             name='description'
@@ -104,7 +104,7 @@ const AdminModifyProductsPage: React.FC<Props> = ({
             id='product-description-input'
             cols={44}
             rows={5}
-            defaultValue={getCurrentProduct.description}
+            value={getCurrentProduct.description}
           ></textarea>
 
           <fieldset>
@@ -114,7 +114,7 @@ const AdminModifyProductsPage: React.FC<Props> = ({
               name='image'
               ref={imageRef}
               id='products-img-upload'
-              defaultValue={getCurrentProduct.img}
+              value={getCurrentProduct.img}
             />
           </fieldset>
           <fieldset>
