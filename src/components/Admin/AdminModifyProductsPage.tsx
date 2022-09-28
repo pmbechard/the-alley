@@ -80,95 +80,100 @@ const AdminModifyProductsPage: React.FC<Props> = ({
         })}
       </select>
       {getCurrentProduct ? (
-        <form className='admin-panel-form' onSubmit={(e) => compareProduct(e)}>
-          <input
-            type='text'
-            name='name'
-            ref={nameRef}
-            id='product-name-input'
-            value={getCurrentProduct.name}
-            disabled
-          />
-          <input
-            type='number'
-            min={0}
-            step='.01'
-            name='price'
-            ref={priceRef}
-            id='product-price-input'
-            value={getCurrentProduct.price}
-          />
-          <textarea
-            name='description'
-            ref={descriptionRef}
-            id='product-description-input'
-            cols={44}
-            rows={5}
-            value={getCurrentProduct.description}
-          ></textarea>
-
-          <fieldset>
-            <legend>Image URL</legend>
+        <>
+          <h2>Add changes ONLY to the desired fields.</h2>
+          <form
+            className='admin-panel-form'
+            onSubmit={(e) => compareProduct(e)}
+          >
             <input
               type='text'
-              name='image'
-              ref={imageRef}
-              id='products-img-upload'
-              value={getCurrentProduct.img}
+              name='name'
+              ref={nameRef}
+              id='product-name-input'
+              value={getCurrentProduct.name}
+              disabled
             />
-          </fieldset>
-          <fieldset>
-            <legend>Tags</legend>
-            <select multiple ref={tagsRef}>
-              <option
-                value='hot'
-                selected={getCurrentProduct.tags.includes('hot')}
-              >
-                Hot
-              </option>
-              <option
-                value='budget'
-                selected={getCurrentProduct.tags.includes('budget')}
-              >
-                Budget
-              </option>
-              <option
-                value='electronics'
-                selected={getCurrentProduct.tags.includes('electronics')}
-              >
-                Electronics
-              </option>
-              <option
-                value='clothes'
-                selected={getCurrentProduct.tags.includes('clothes')}
-              >
-                Clothes
-              </option>
-              <option
-                value='outdoor'
-                selected={getCurrentProduct.tags.includes('outdoor')}
-              >
-                Outdoor
-              </option>
-              <option
-                value='books'
-                selected={getCurrentProduct.tags.includes('books')}
-              >
-                Books
-              </option>
-              <option
-                value='music'
-                selected={getCurrentProduct.tags.includes('music')}
-              >
-                Music
-              </option>
-            </select>
-          </fieldset>
-          <div className='form-btn-area'>
-            <button type='submit'>Save Changes</button>
-            <button onClick={() => setAdminPage('main')}>Cancel</button>
-          </div>
-        </form>
+            <input
+              type='number'
+              min={0}
+              step='.01'
+              name='price'
+              ref={priceRef}
+              id='product-price-input'
+              placeholder={`${getCurrentProduct.price}`}
+            />
+            <textarea
+              name='description'
+              ref={descriptionRef}
+              id='product-description-input'
+              cols={44}
+              rows={5}
+              placeholder={getCurrentProduct.description}
+            ></textarea>
+            <fieldset>
+              <legend>Image URL</legend>
+              <input
+                type='text'
+                name='image'
+                ref={imageRef}
+                id='products-img-upload'
+                placeholder={getCurrentProduct.img}
+              />
+            </fieldset>
+            <fieldset>
+              <legend>Tags</legend>
+              <select multiple ref={tagsRef}>
+                <option
+                  value='hot'
+                  selected={getCurrentProduct.tags.includes('hot')}
+                >
+                  Hot
+                </option>
+                <option
+                  value='budget'
+                  selected={getCurrentProduct.tags.includes('budget')}
+                >
+                  Budget
+                </option>
+                <option
+                  value='electronics'
+                  selected={getCurrentProduct.tags.includes('electronics')}
+                >
+                  Electronics
+                </option>
+                <option
+                  value='clothes'
+                  selected={getCurrentProduct.tags.includes('clothes')}
+                >
+                  Clothes
+                </option>
+                <option
+                  value='outdoor'
+                  selected={getCurrentProduct.tags.includes('outdoor')}
+                >
+                  Outdoor
+                </option>
+                <option
+                  value='books'
+                  selected={getCurrentProduct.tags.includes('books')}
+                >
+                  Books
+                </option>
+                <option
+                  value='music'
+                  selected={getCurrentProduct.tags.includes('music')}
+                >
+                  Music
+                </option>
+              </select>
+            </fieldset>
+            <div className='form-btn-area'>
+              <button type='submit'>Save Changes</button>
+              <button onClick={() => setAdminPage('main')}>Cancel</button>
+            </div>
+          </form>
+        </>
       ) : (
         <p>Select a product from above</p>
       )}

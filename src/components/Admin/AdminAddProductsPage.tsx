@@ -35,7 +35,7 @@ const AdminAddProductsPage: React.FC<Props> = ({
       tags.length === 0
     ) {
       // FIXME: find a more elegant way to deal with form validation
-      alert('Please fill in the entire form to continue.');
+      alert('Please complete all fields to continue.');
     } else {
       const newProduct: Product = {
         name: `${nameRef.current?.value}`,

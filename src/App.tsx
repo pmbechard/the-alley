@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { firebaseConfig } from './firebase/firebase-config';
-import { initializeApp } from 'firebase/app';
+import { db } from './firebase/firebase-config';
 import {
   getAuth,
   signInWithPopup,
@@ -37,21 +36,18 @@ const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
   const [getProducts, setProducts] = useState<Product[]>();
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      let products = await getDocs(collection(db, 'products'));
+      let productsList: Product[] = [];
+      products.forEach((product) => {
+        productsList.push({ ...product.data() } as Product);
+      });
+      setProducts(productsList);
+    };
     fetchProducts();
-  });
-
-  const fetchProducts = async () => {
-    let products = await getDocs(collection(db, 'products'));
-    let productsList: Product[] = [];
-    products.forEach((product) => {
-      productsList.push({ ...product.data() } as Product);
-    });
-    setProducts(productsList);
-  };
+  }, []);
 
   const addProductToFirebase = async (product: Product): Promise<void> => {
     try {
@@ -62,7 +58,6 @@ const App = () => {
         img: product.img,
         tags: product.tags,
       });
-      
     } catch (e) {
       console.log(e);
     }
