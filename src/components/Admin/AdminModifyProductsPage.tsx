@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import backIcon from '../../img/back.png';
 import { Product, ModifiedProduct } from '../Interfaces/ProductInterface';
 
@@ -19,12 +19,12 @@ const AdminModifyProductsPage: React.FC<Props> = ({
   updateProduct,
 }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
-  let [getCurrentProduct, setCurrentProduct] = useState<Product | null>(null);
-  const nameRef = useRef<HTMLInputElement>(null);
-  const priceRef = useRef<HTMLInputElement>(null);
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
-  const imageRef = useRef<HTMLInputElement>(null);
-  const tagsRef = useRef<HTMLSelectElement>(null);
+  const [getCurrentProduct, setCurrentProduct] = useState<Product | null>(null);
+  const [name, setName] = useState<string>('');
+  const [price, setPrice] = useState<number>(0);
+  const [description, setDescription] = useState<string>('');
+  const [img, setImg] = useState<string>('');
+  const tagsRef = useRef<HTMLSelectElement | null>(null);
 
   const compareProduct = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,17 +36,22 @@ const AdminModifyProductsPage: React.FC<Props> = ({
 
     let changes: ModifiedProduct = {};
 
-    if (priceRef.current?.value !== getCurrentProduct?.price)
-      changes['price'] = getCurrentProduct?.price;
-    if (descriptionRef.current?.value !== getCurrentProduct?.description)
-      changes['description'] = getCurrentProduct?.description;
-    if (imageRef.current?.value !== getCurrentProduct?.img)
-      changes['img'] = getCurrentProduct?.img;
+    if (price !== getCurrentProduct?.price) changes['price'] = price;
+    if (description !== getCurrentProduct?.description)
+      changes['description'] = description;
+    if (img !== getCurrentProduct?.img) changes['img'] = img;
     if (tags !== getCurrentProduct?.tags) changes['tags'] = tags;
 
-    updateProduct(changes, getCurrentProduct?.name || '');
+    updateProduct(changes, name || '');
     setAdminPage('main');
   };
+
+  useEffect(() => {
+    setName(getCurrentProduct?.name || '');
+    setPrice(getCurrentProduct?.price || 0);
+    setDescription(getCurrentProduct?.description || '');
+    setImg(getCurrentProduct?.img || '');
+  }, [getCurrentProduct]);
 
   return (
     <>
@@ -89,9 +94,8 @@ const AdminModifyProductsPage: React.FC<Props> = ({
             <input
               type='text'
               name='name'
-              ref={nameRef}
               id='product-name-input'
-              value={getCurrentProduct.name}
+              value={name}
               disabled
             />
             <input
@@ -99,26 +103,26 @@ const AdminModifyProductsPage: React.FC<Props> = ({
               min={0}
               step='.01'
               name='price'
-              ref={priceRef}
               id='product-price-input'
-              placeholder={`${getCurrentProduct.price}`}
+              placeholder={`${price}`}
+              onChange={(e) => setPrice(Number(e.target.value))}
             />
             <textarea
               name='description'
-              ref={descriptionRef}
               id='product-description-input'
               cols={44}
               rows={5}
-              placeholder={getCurrentProduct.description}
+              placeholder={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
             <fieldset>
               <legend>Image URL</legend>
               <input
                 type='text'
                 name='image'
-                ref={imageRef}
                 id='products-img-upload'
-                placeholder={getCurrentProduct.img}
+                placeholder={img}
+                onChange={(e) => setImg(e.target.value)}
               />
             </fieldset>
             <fieldset>
