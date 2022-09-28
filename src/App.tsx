@@ -11,12 +11,12 @@ import {
 } from 'firebase/auth';
 import {
   collection,
-  getFirestore,
   getDocs,
   setDoc,
   doc,
   getDoc,
   updateDoc,
+  deleteDoc,
 } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
@@ -80,6 +80,11 @@ const App = () => {
     });
   };
 
+  const deleteProduct = async (id: string): Promise<void> => {
+    const productDoc = doc(db, 'products', id);
+    await deleteDoc(productDoc);
+  };
+
   const signIn = () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
@@ -135,6 +140,7 @@ const App = () => {
           setProducts={setProducts}
           getProductByName={getProductByName}
           updateProduct={updateProduct}
+          deleteProduct={deleteProduct}
         />
       )}
     </BrowserRouter>

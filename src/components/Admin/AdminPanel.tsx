@@ -19,6 +19,7 @@ interface Props {
     modifiedProduct: ModifiedProduct,
     name: string
   ) => Promise<void>;
+  deleteProduct: (id: string) => Promise<void>;
 }
 
 const AdminPanel: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const AdminPanel: React.FC<Props> = ({
   setProducts,
   getProductByName,
   updateProduct,
+  deleteProduct,
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
 
@@ -67,7 +69,11 @@ const AdminPanel: React.FC<Props> = ({
           />
         )}
         {getAdminPage === 'removeProducts' && (
-          <AdminRemoveProductsPage setAdminPage={setAdminPage} />
+          <AdminRemoveProductsPage
+            setAdminPage={setAdminPage}
+            getProducts={getProducts}
+            deleteProduct={deleteProduct}
+          />
         )}
 
         {getAdminPage === 'scheduleSale' && (
