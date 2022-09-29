@@ -36,6 +36,7 @@ const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
   const [getProducts, setProducts] = useState<Product[]>();
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
+  const [getAdmins, setAdmins] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -85,7 +86,7 @@ const App = () => {
     await deleteDoc(productDoc);
   };
 
-  const signIn = () => {
+  const signIn = async () => {
     const provider = new GoogleAuthProvider();
     const auth = getAuth();
     signInWithPopup(auth, provider)
@@ -104,6 +105,7 @@ const App = () => {
         console.log(error);
         setUserInfo(null);
       });
+    await fetchAdmins();
   };
 
   const signUserOut = () => {
@@ -117,6 +119,15 @@ const App = () => {
       });
   };
 
+  const fetchAdmins = async () => {
+    let admins = await getDocs(collection(db, 'admins'));
+    let adminList: string[] = [];
+    admins.forEach((admin) => {
+      adminList.push(`${admin.data().email}`);
+    });
+    setAdmins(adminList);
+  };
+
   return (
     <BrowserRouter>
       <Header
@@ -125,6 +136,7 @@ const App = () => {
         getUserInfo={getUserInfo}
         showAdminPanel={showAdminPanel}
         setShowAdminPanel={setShowAdminPanel}
+        getAdmins={getAdmins}
       />
       <Navbar />
       <Routes>

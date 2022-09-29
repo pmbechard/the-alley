@@ -13,6 +13,7 @@ interface Props {
   signUserOut: () => void;
   showAdminPanel: boolean;
   setShowAdminPanel: React.Dispatch<React.SetStateAction<boolean>>;
+  getAdmins: string[];
 }
 
 const Header: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const Header: React.FC<Props> = ({
   signUserOut,
   showAdminPanel,
   setShowAdminPanel,
+  getAdmins,
 }) => {
   return (
     <div className='header'>
@@ -50,7 +52,7 @@ const Header: React.FC<Props> = ({
             <img src={signOutIcon} alt='sign out' />
             Sign out
           </p>
-          {getUserInfo.email === 'peyton.bechard@gmail.com' && (
+          {getAdmins.includes(getUserInfo.email || '') && (
             <AdminPanelBtn
               showAdminPanel={showAdminPanel}
               setShowAdminPanel={setShowAdminPanel}
