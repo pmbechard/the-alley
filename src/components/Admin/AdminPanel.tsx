@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import closeIcon from '../../img/close.png';
 import { ModifiedProduct, Product } from '../Interfaces/ProductInterface';
 import AdminAddProductsPage from './AdminAddProductsPage';
+import AdminConfirmPage from './AdminConfirmPage';
 import AdminMainPage from './AdminMainPage';
 import AdminModifyProductsPage from './AdminModifyProductsPage';
 import AdminModifySale from './AdminModifySale';
 import AdminRemoveProductsPage from './AdminRemoveProductsPage';
 import AdminScheduleSale from './AdminScheduleSale';
+import AdminSuccessPage from './AdminSuccessPage';
 import AdminUserPermissionsPage from './AdminUserPermissionsPage';
 
 interface Props {
@@ -38,6 +40,8 @@ const AdminPanel: React.FC<Props> = ({
   removeAdmin,
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
+  const [confirmMsg, setConfirmMsg] = useState<string>('');
+  const [confirmCallback, setConfirmCallback] = useState<any>(() => {});
 
   useEffect(() => {
     setAdminPage('main');
@@ -95,9 +99,21 @@ const AdminPanel: React.FC<Props> = ({
             getAdmins={getAdmins}
             addAdmin={addAdmin}
             removeAdmin={removeAdmin}
+            setConfirmMsg={setConfirmMsg}
+            setConfirmCallback={setConfirmCallback}
           />
         )}
-        {/* TODO: Add confirmationPage(msg, callback) */}
+        {getAdminPage === 'confirmation' && (
+          <AdminConfirmPage
+            msg={confirmMsg}
+            callback={confirmCallback}
+            setAdminPage={setAdminPage}
+          />
+        )}
+
+        {getAdminPage === 'success' && (
+          <AdminSuccessPage setAdminPage={setAdminPage} />
+        )}
       </div>
     </>
   );

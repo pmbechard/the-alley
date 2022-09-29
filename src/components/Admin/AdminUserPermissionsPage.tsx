@@ -6,6 +6,8 @@ interface Props {
   getAdmins: string[];
   addAdmin: (email: string) => Promise<void>;
   removeAdmin: (email: string) => Promise<void>;
+  setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
+  setConfirmCallback: React.Dispatch<any>;
 }
 
 const AdminUserPermissionsPage: React.FC<Props> = ({
@@ -13,10 +15,24 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
   getAdmins,
   addAdmin,
   removeAdmin,
+  setConfirmMsg,
+  setConfirmCallback,
 }) => {
   const [userAction, setUserAction] = useState<number>(0);
   const addEmailRef = useRef<HTMLInputElement>(null);
   const removeEmailRef = useRef<HTMLSelectElement>(null);
+
+  const addHandler = () => {
+    addAdmin(`${addEmailRef.current?.value}`);
+    setUserAction(0);
+    setAdminPage('success');
+  };
+
+  const removeHandler = () => {
+    removeAdmin(`${removeEmailRef.current?.value}`);
+    setUserAction(0);
+    setAdminPage('success');
+  };
 
   return (
     <>
@@ -35,11 +51,16 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
       )}
       {userAction === 1 && (
         <>
-          <input type='text' placeholder='Email' ref={addEmailRef} />
+          <form action='admin-panel-form'>
+            <input type='text' placeholder='Email' ref={addEmailRef} />
+          </form>
           <button
             onClick={() => {
-              addAdmin(`${addEmailRef.current?.value}`);
-              setUserAction(0);
+              setConfirmMsg(
+                `Are you sure you want to add ${addEmailRef.current?.value} as a site administrator?`
+              );
+              setConfirmCallback(addHandler);
+              setAdminPage('confirmation');
             }}
           >
             Add Admin
@@ -63,8 +84,11 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
           </select>
           <button
             onClick={() => {
-              removeAdmin(removeEmailRef.current?.value || '');
-              setUserAction(0);
+              setConfirmMsg(
+                `Are you sure you want to remove ${removeEmailRef.current?.value} as a site administrator?`
+              );
+              setConfirmCallback(removeHandler);
+              setAdminPage('confirmation');
             }}
           >
             Remove Admin

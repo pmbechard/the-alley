@@ -77,14 +77,11 @@
   }
 }
 
-@keyframes slide-in {
-  0% {
-    right: -400px;
-  }
-
-  100% {
-    right: calc(50% - 200px);
-  }
+#success-icon {
+  animation-name: pulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 0.3s;
 }
 
 .admin-panel-form {
@@ -104,5 +101,25 @@
   fieldset {
     color: $blackColour;
     border: 2px solid $blackColour;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    right: -400px;
+  }
+
+  100% {
+    right: calc(50% - 200px);
+  }
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(0.9);
+  }
+
+  100% {
+    transform: scale(1.1);
   }
 }
