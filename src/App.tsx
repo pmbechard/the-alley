@@ -128,6 +128,17 @@ const App = () => {
     setAdmins(adminList);
   };
 
+  const addAdmin = async (email: string) => {
+    await setDoc(doc(db, 'admins', email), {
+      email: email,
+    });
+  };
+
+  const removeAdmin = async (email: string) => {
+    const adminDoc = doc(db, 'admins', email);
+    await deleteDoc(adminDoc);
+  };
+
   return (
     <BrowserRouter>
       <Header
@@ -153,6 +164,9 @@ const App = () => {
           getProductByName={getProductByName}
           updateProduct={updateProduct}
           deleteProduct={deleteProduct}
+          getAdmins={getAdmins}
+          addAdmin={addAdmin}
+          removeAdmin={removeAdmin}
         />
       )}
     </BrowserRouter>

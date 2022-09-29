@@ -20,6 +20,9 @@ interface Props {
     name: string
   ) => Promise<void>;
   deleteProduct: (id: string) => Promise<void>;
+  getAdmins: string[];
+  addAdmin: (email: string) => Promise<void>;
+  removeAdmin: (email: string) => Promise<void>;
 }
 
 const AdminPanel: React.FC<Props> = ({
@@ -30,6 +33,9 @@ const AdminPanel: React.FC<Props> = ({
   getProductByName,
   updateProduct,
   deleteProduct,
+  getAdmins,
+  addAdmin,
+  removeAdmin,
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
 
@@ -84,8 +90,14 @@ const AdminPanel: React.FC<Props> = ({
         )}
 
         {getAdminPage === 'userPermissions' && (
-          <AdminUserPermissionsPage setAdminPage={setAdminPage} />
+          <AdminUserPermissionsPage
+            setAdminPage={setAdminPage}
+            getAdmins={getAdmins}
+            addAdmin={addAdmin}
+            removeAdmin={removeAdmin}
+          />
         )}
+        {/* TODO: Add confirmationPage(msg, callback) */}
       </div>
     </>
   );
