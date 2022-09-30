@@ -17,8 +17,8 @@ const AdminConfirmPage: React.FC<Props> = ({ msg, callback, setAdminPage }) => {
         onClick={() => setAdminPage('main')}
       />
       <h1>Confirm</h1>
-      <p>{msg}</p>
-      <button onClick={callback}>Confirm</button>
+      <p className='admin-confirm-msg'>{msg}</p>
+      <button onClick={() => callback()}>Confirm</button>
       <button onClick={() => setAdminPage('main')}>Cancel</button>
     </>
   );

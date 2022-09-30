@@ -15,7 +15,7 @@ const AdminSuccessPage: React.FC<Props> = ({ setAdminPage }) => {
   return (
     <>
       <h1>Success</h1>
-      <img id='success-icon' src={checkIcon} alt='success' />
+      <img className='success-icon' src={checkIcon} alt='success' />
     </>
   );
 };

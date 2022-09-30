@@ -22,14 +22,14 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
   const addEmailRef = useRef<HTMLInputElement>(null);
   const removeEmailRef = useRef<HTMLSelectElement>(null);
 
-  const addHandler = () => {
-    addAdmin(`${addEmailRef.current?.value}`);
+  const addHandler = async () => {
+    await addAdmin(`${addEmailRef.current?.value}`);
     setUserAction(0);
     setAdminPage('success');
   };
 
-  const removeHandler = () => {
-    removeAdmin(`${removeEmailRef.current?.value}`);
+  const removeHandler = async () => {
+    await removeAdmin(`${removeEmailRef.current?.value}`);
     setUserAction(0);
     setAdminPage('success');
   };
@@ -59,7 +59,7 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
               setConfirmMsg(
                 `Are you sure you want to add ${addEmailRef.current?.value} as a site administrator?`
               );
-              setConfirmCallback(addHandler);
+              setConfirmCallback(() => addHandler());
               setAdminPage('confirmation');
             }}
           >
@@ -87,7 +87,7 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
               setConfirmMsg(
                 `Are you sure you want to remove ${removeEmailRef.current?.value} as a site administrator?`
               );
-              setConfirmCallback(removeHandler);
+              setConfirmCallback(() => removeHandler());
               setAdminPage('confirmation');
             }}
           >

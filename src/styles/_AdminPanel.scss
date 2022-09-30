@@ -77,11 +77,12 @@
   }
 }
 
-#success-icon {
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-duration: 0.3s;
+.admin-confirm-msg {
+  text-align: center;
+}
+
+.success-icon {
+  animation: pulse 0.4s infinite;
 }
 
 .admin-panel-form {
