@@ -10,6 +10,8 @@ interface Props {
     modifiedProduct: ModifiedProduct,
     name: string
   ) => Promise<void>;
+  setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
+  setConfirmCallback: React.Dispatch<() => Promise<void>>;
 }
 
 const AdminModifyProductsPage: React.FC<Props> = ({
@@ -17,6 +19,8 @@ const AdminModifyProductsPage: React.FC<Props> = ({
   getProducts,
   getProductByName,
   updateProduct,
+  setConfirmMsg,
+  setConfirmCallback,
 }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const [getCurrentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -42,8 +46,11 @@ const AdminModifyProductsPage: React.FC<Props> = ({
     if (img !== getCurrentProduct?.img) changes['img'] = img;
     if (tags !== getCurrentProduct?.tags) changes['tags'] = tags;
 
-    updateProduct(changes, name || '');
-    setAdminPage('main');
+    setConfirmMsg(`Are you sure you want to makes changes to ${name}?`);
+    setConfirmCallback(async function () {
+      updateProduct(changes, name || '');
+    });
+    setAdminPage('confirmation');
   };
 
   useEffect(() => {
