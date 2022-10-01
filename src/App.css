@@ -194,8 +194,8 @@
 }
 .admin-panel .panel-btn {
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 10px;
+  right: 10px;
   height: 20px;
   width: 20px;
   cursor: pointer;
@@ -208,7 +208,9 @@
   opacity: 1;
 }
 .admin-panel .back-btn {
-  left: 5px;
+  left: 10px;
+  height: 25px;
+  width: auto;
 }
 .admin-panel h1 {
   margin-bottom: 20px;
@@ -224,8 +226,8 @@
 }
 .admin-panel .success-icon {
   margin-top: 40px;
-  -webkit-animation: pulse 1s infinite;
-          animation: pulse 1s infinite;
+  -webkit-animation: pulse 1s infinite ease-in-out;
+          animation: pulse 1s infinite ease-in-out;
 }
 .admin-panel button {
   border: 1px solid #111;
@@ -283,18 +285,18 @@
   }
 }
 @-webkit-keyframes pulse {
-  50% {
+  33% {
     transform: scale(0.9);
   }
-  100% {
+  66% {
     transform: scale(1.1);
   }
 }
 @keyframes pulse {
-  50% {
+  33% {
     transform: scale(0.9);
   }
-  100% {
+  66% {
     transform: scale(1.1);
   }
 }

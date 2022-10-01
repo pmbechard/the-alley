@@ -49,7 +49,7 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
       )}
       {userAction === 1 && (
         <>
-          <form action='admin-panel-form'>
+          <form className='admin-panel-form'>
             <input type='text' placeholder='Email' ref={addEmailRef} />
           </form>
           <button
@@ -71,18 +71,20 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
       )}
       {userAction === 2 && (
         <>
-          <select
-            ref={removeEmailRef}
-            defaultValue='Choose an admin to remove:'
-          >
-            {getAdmins.map((admin) => {
-              return (
-                <option value={admin} key={admin}>
-                  {admin}
-                </option>
-              );
-            })}
-          </select>
+          <form className='admin-panel-form'>
+            <select
+              ref={removeEmailRef}
+              defaultValue='Choose an admin to remove:'
+            >
+              {getAdmins.map((admin) => {
+                return (
+                  <option value={admin} key={admin}>
+                    {admin}
+                  </option>
+                );
+              })}
+            </select>
+          </form>
           <button
             onClick={() => {
               setConfirmMsg(

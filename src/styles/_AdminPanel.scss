@@ -25,8 +25,8 @@
 
   .panel-btn {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     height: 20px;
     width: 20px;
     cursor: pointer;
@@ -42,7 +42,9 @@
   }
 
   .back-btn {
-    left: 5px;
+    left: 10px;
+    height: 25px;
+    width: auto;
   }
 
   h1 {
@@ -63,7 +65,7 @@
 
   .success-icon {
     margin-top: 40px;
-    animation: pulse 1s infinite;
+    animation: pulse 1s infinite ease-in-out;
   }
 
   button {
@@ -117,11 +119,11 @@
 }
 
 @keyframes pulse {
-  50% {
+  33% {
     transform: scale(0.9);
   }
 
-  100% {
+  66% {
     transform: scale(1.1);
   }
 }
