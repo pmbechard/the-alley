@@ -1,3 +1,5 @@
 .shop-container {
   height: $bodyHeight;
+  @include fCenter();
+  gap: 40px;
 }

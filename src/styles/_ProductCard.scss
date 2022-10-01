@@ -1,0 +1,19 @@
+.product-card {
+  border: 1px solid $blackColour;
+  height: 400px;
+  width: 300px;
+
+  .card-img-area {
+    height: 70%;
+    @include fCenter();
+
+    img {
+      max-width: 298px;
+      height: auto;
+    }
+  }
+
+  .card-info-area {
+    padding: 20px;
+  }
+}
