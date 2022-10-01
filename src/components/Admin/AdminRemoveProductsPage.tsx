@@ -6,15 +6,27 @@ interface Props {
   setAdminPage: React.Dispatch<React.SetStateAction<string>>;
   getProducts: Product[] | undefined;
   deleteProduct: (id: string) => Promise<void>;
+  setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
+  setConfirmCallback: React.Dispatch<() => Promise<void>>;
 }
 
 const AdminRemoveProductsPage: React.FC<Props> = ({
   setAdminPage,
   getProducts,
   deleteProduct,
+  setConfirmMsg,
+  setConfirmCallback,
 }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const [getCurrentProduct, setCurrentProduct] = useState<string>('');
+
+  const handleClick = () => {
+    setConfirmMsg(`Are you sure you want to delete ${getCurrentProduct}?`);
+    setConfirmCallback(async function () {
+      deleteProduct(getCurrentProduct);
+    });
+    setAdminPage('confirmation');
+  };
 
   return (
     <>
@@ -43,14 +55,7 @@ const AdminRemoveProductsPage: React.FC<Props> = ({
           );
         })}
       </select>
-      <button
-        onClick={() => {
-          deleteProduct(getCurrentProduct);
-          setAdminPage('main');
-        }}
-      >
-        Delete Product
-      </button>
+      <button onClick={handleClick}>Delete Product</button>
     </>
   );
 };
