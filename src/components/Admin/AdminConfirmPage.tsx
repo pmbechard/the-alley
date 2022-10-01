@@ -3,11 +3,18 @@ import backIcon from '../../img/back.png';
 
 interface Props {
   msg: string;
-  callback: any;
+  callback: () => Promise<void>;
   setAdminPage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AdminConfirmPage: React.FC<Props> = ({ msg, callback, setAdminPage }) => {
+  const runCallback = async () => {
+    (async () => {
+      return await callback;
+    })();
+    setAdminPage('success');
+  };
+
   return (
     <>
       <img
@@ -18,7 +25,7 @@ const AdminConfirmPage: React.FC<Props> = ({ msg, callback, setAdminPage }) => {
       />
       <h1>Confirm</h1>
       <p className='admin-confirm-msg'>{msg}</p>
-      <button onClick={() => callback()}>Confirm</button>
+      <button onClick={runCallback}>Confirm</button>
       <button onClick={() => setAdminPage('main')}>Cancel</button>
     </>
   );

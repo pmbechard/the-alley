@@ -57,6 +57,15 @@
     margin: 10px;
   }
 
+  .admin-confirm-msg {
+    text-align: center;
+  }
+
+  .success-icon {
+    margin-top: 40px;
+    animation: pulse 1s infinite;
+  }
+
   button {
     border: 1px solid $blackColour;
     background-color: $greyColour;
@@ -75,14 +84,6 @@
       opacity: 1;
     }
   }
-}
-
-.admin-confirm-msg {
-  text-align: center;
-}
-
-.success-icon {
-  animation: pulse 0.4s infinite;
 }
 
 .admin-panel-form {

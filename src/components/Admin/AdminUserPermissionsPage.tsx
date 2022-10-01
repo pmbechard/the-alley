@@ -7,7 +7,7 @@ interface Props {
   addAdmin: (email: string) => Promise<void>;
   removeAdmin: (email: string) => Promise<void>;
   setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
-  setConfirmCallback: React.Dispatch<any>;
+  setConfirmCallback: React.Dispatch<() => Promise<void>>;
 }
 
 const AdminUserPermissionsPage: React.FC<Props> = ({
@@ -22,17 +22,15 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
   const addEmailRef = useRef<HTMLInputElement>(null);
   const removeEmailRef = useRef<HTMLSelectElement>(null);
 
-  const addHandler = async () => {
-    await addAdmin(`${addEmailRef.current?.value}`);
-    setUserAction(0);
-    setAdminPage('success');
-  };
+  // async function addHandler() {
+  //   await addAdmin(`${addEmailRef.current?.value}`);
+  //   setUserAction(0);
+  // }
 
-  const removeHandler = async () => {
-    await removeAdmin(`${removeEmailRef.current?.value}`);
-    setUserAction(0);
-    setAdminPage('success');
-  };
+  // async function removeHandler() {
+  //   await removeAdmin(`${removeEmailRef.current?.value}`);
+  //   setUserAction(0);
+  // }
 
   return (
     <>
@@ -59,7 +57,10 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
               setConfirmMsg(
                 `Are you sure you want to add ${addEmailRef.current?.value} as a site administrator?`
               );
-              setConfirmCallback(() => addHandler());
+              setConfirmCallback(async function () {
+                await addAdmin(`${addEmailRef.current?.value}`);
+                setUserAction(0);
+              });
               setAdminPage('confirmation');
             }}
           >
@@ -87,7 +88,10 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
               setConfirmMsg(
                 `Are you sure you want to remove ${removeEmailRef.current?.value} as a site administrator?`
               );
-              setConfirmCallback(() => removeHandler());
+              setConfirmCallback(async function () {
+                await removeAdmin(`${removeEmailRef.current?.value}`);
+                setUserAction(0);
+              });
               setAdminPage('confirmation');
             }}
           >

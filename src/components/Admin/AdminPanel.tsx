@@ -41,7 +41,9 @@ const AdminPanel: React.FC<Props> = ({
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
   const [confirmMsg, setConfirmMsg] = useState<string>('');
-  const [confirmCallback, setConfirmCallback] = useState<any>(() => {});
+  const [confirmCallback, setConfirmCallback] = useState<() => Promise<void>>(
+    () => Promise.resolve()
+  );
 
   useEffect(() => {
     setAdminPage('main');
