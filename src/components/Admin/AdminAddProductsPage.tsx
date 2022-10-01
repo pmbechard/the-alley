@@ -6,12 +6,16 @@ interface Props {
   setAdminPage: React.Dispatch<React.SetStateAction<string>>;
   addProductToFirebase: (product: Product) => void;
   getProducts: Product[] | undefined;
+  setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
+  setConfirmCallback: React.Dispatch<() => Promise<void>>;
 }
 
 const AdminAddProductsPage: React.FC<Props> = ({
   setAdminPage,
   addProductToFirebase,
   getProducts,
+  setConfirmMsg,
+  setConfirmCallback,
 }) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -45,8 +49,13 @@ const AdminAddProductsPage: React.FC<Props> = ({
         tags: tags,
       };
 
-      addProductToFirebase(newProduct);
-      setAdminPage('main');
+      setConfirmMsg(
+        `Are you sure you want to add "${newProduct.name}" to products?`
+      );
+      setConfirmCallback(async function () {
+        addProductToFirebase(newProduct);
+        setAdminPage('confirmation');
+      });
     }
   };
 

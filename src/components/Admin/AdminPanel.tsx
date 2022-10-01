@@ -70,6 +70,8 @@ const AdminPanel: React.FC<Props> = ({
             setAdminPage={setAdminPage}
             addProductToFirebase={addProductToFirebase}
             getProducts={getProducts}
+            setConfirmMsg={setConfirmMsg}
+            setConfirmCallback={setConfirmCallback}
           />
         )}
         {getAdminPage === 'modifyProducts' && (
