@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Product } from '../Interfaces/ProductInterface';
 
 interface Props {
@@ -11,54 +12,66 @@ interface Props {
 const Navbar: React.FC<Props> = ({ getProducts, setProductsInView }) => {
   return (
     <ol className='navbar'>
-      <li
-        onClick={() =>
-          setProductsInView(
-            getProducts?.filter((product) =>
-              product.tags.includes('electronics')
+      <Link to='./shop' className='filter-link'>
+        <li
+          onClick={() =>
+            setProductsInView(
+              getProducts?.filter((product) =>
+                product.tags.includes('electronics')
+              )
             )
-          )
-        }
-      >
-        Electronics
-      </li>
-      <li
-        onClick={() =>
-          setProductsInView(
-            getProducts?.filter((product) => product.tags.includes('clothes'))
-          )
-        }
-      >
-        Clothes
-      </li>
-      <li
-        onClick={() =>
-          setProductsInView(
-            getProducts?.filter((product) => product.tags.includes('outdoor'))
-          )
-        }
-      >
-        Outdoor
-      </li>
-      <li
-        onClick={() =>
-          setProductsInView(
-            getProducts?.filter((product) => product.tags.includes('books'))
-          )
-        }
-      >
-        Books
-      </li>
-      <li
-        onClick={() =>
-          setProductsInView(
-            getProducts?.filter((product) => product.tags.includes('music'))
-          )
-        }
-      >
-        Music
-      </li>
-      <li onClick={() => setProductsInView(getProducts)}>All</li>
+          }
+        >
+          Electronics
+        </li>
+      </Link>
+      <Link to='./shop' className='filter-link'>
+        <li
+          onClick={() =>
+            setProductsInView(
+              getProducts?.filter((product) => product.tags.includes('clothes'))
+            )
+          }
+        >
+          Clothes
+        </li>
+      </Link>
+      <Link to='./shop' className='filter-link'>
+        <li
+          onClick={() =>
+            setProductsInView(
+              getProducts?.filter((product) => product.tags.includes('outdoor'))
+            )
+          }
+        >
+          Outdoor
+        </li>
+      </Link>
+      <Link to='./shop' className='filter-link'>
+        <li
+          onClick={() =>
+            setProductsInView(
+              getProducts?.filter((product) => product.tags.includes('books'))
+            )
+          }
+        >
+          Books
+        </li>
+      </Link>
+      <Link to='./shop' className='filter-link'>
+        <li
+          onClick={() =>
+            setProductsInView(
+              getProducts?.filter((product) => product.tags.includes('music'))
+            )
+          }
+        >
+          Music
+        </li>
+      </Link>
+      <Link to='./shop' className='filter-link'>
+        <li onClick={() => setProductsInView(getProducts)}>All</li>
+      </Link>
     </ol>
   );
 };

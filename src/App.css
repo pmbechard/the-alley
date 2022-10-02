@@ -61,10 +61,11 @@
   height: 5vh;
   font-weight: bolder;
 }
-.navbar li {
+.navbar .filter-link {
+  text-decoration: none;
   cursor: pointer;
 }
-.navbar li:hover {
+.navbar .filter-link:hover {
   text-decoration: underline;
 }
 
