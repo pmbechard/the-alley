@@ -1,11 +1,20 @@
 .product-card {
-  border: 1px solid $blackColour;
   height: 400px;
-  width: 300px;
+  width: 350px;
+  border: 1px solid $blackColour;
+  box-shadow: 0.5px 0.5px 0.5px $greyColour;
+  transition: background-color 0.4s ease-in-out, transform 0.2s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    background-color: $greyColour;
+  }
 
   .card-img-area {
     height: 70%;
     @include fCenter();
+    background-color: #fff;
 
     img {
       max-width: 298px;
@@ -15,5 +24,6 @@
 
   .card-info-area {
     padding: 20px;
+    background-color: transparent;
   }
 }
