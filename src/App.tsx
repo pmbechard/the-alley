@@ -35,6 +35,7 @@ import AdminPanel from './components/Admin/AdminPanel';
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
   const [getProducts, setProducts] = useState<Product[]>();
+  const [productsInView, setProductsInView] = useState<Product[]>();
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
   const [getAdmins, setAdmins] = useState<string[]>([]);
 
@@ -48,6 +49,8 @@ const App = () => {
       setProducts(productsList);
     };
     fetchProducts();
+    setProductsInView(getProducts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addProductToFirebase = async (product: Product): Promise<void> => {
@@ -149,10 +152,13 @@ const App = () => {
         setShowAdminPanel={setShowAdminPanel}
         getAdmins={getAdmins}
       />
-      <Navbar />
+      <Navbar getProducts={getProducts} setProductsInView={setProductsInView} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/shop' element={<Shop db={db} products={getProducts} />} />
+        <Route
+          path='/shop'
+          element={<Shop db={db} products={productsInView || getProducts} />}
+        />
       </Routes>
       <Footer />
       {showAdminPanel && (
