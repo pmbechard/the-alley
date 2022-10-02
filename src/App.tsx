@@ -8,6 +8,9 @@ import {
   GoogleAuthProvider,
   User,
   signOut,
+  setPersistence,
+  inMemoryPersistence,
+  browserSessionPersistence,
 } from 'firebase/auth';
 import {
   collection,
@@ -40,6 +43,7 @@ const App = () => {
   const [productsInView, setProductsInView] = useState<Product[]>();
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
   const [getAdmins, setAdmins] = useState<string[]>([]);
+  const userPersistence = getAuth().currentUser;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -54,6 +58,10 @@ const App = () => {
     setProductsInView(getProducts);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setUserInfo(userPersistence);
+  }, [userPersistence]);
 
   const addProductToFirebase = async (product: Product): Promise<void> => {
     try {
@@ -92,24 +100,29 @@ const App = () => {
   };
 
   const signIn = async () => {
-    const provider = new GoogleAuthProvider();
     const auth = getAuth();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        // // This gives you a Google Access Token. You can use it to access the Google API.
-        // const credential = GoogleAuthProvider.credentialFromResult(result);
-        // let token;
-        // if (credential) {
-        //   token = credential.accessToken;
-        // }
-        // The signed-in user info.
-        const user = result.user;
-        setUserInfo(user);
+
+    setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        const provider = new GoogleAuthProvider();
+        return signInWithPopup(auth, provider).then((result) => {
+          // This gives you a Google Access Token. You can use it to access the Google API.
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          let token;
+          if (credential) {
+            token = credential.accessToken;
+          }
+          // The signed-in user info.
+          const user = result.user;
+          setUserInfo(user);
+        });
       })
       .catch((error) => {
+        // Handle Errors here.
         console.log(error);
         setUserInfo(null);
       });
+
     await fetchAdmins();
   };
 
