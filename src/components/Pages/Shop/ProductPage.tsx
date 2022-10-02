@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Product } from '../../Interfaces/ProductInterface';
 import addToCartIcon from '../../../img/add-to-cart.png';
+import backIcon from '../../../img/back-2.png';
 
 interface Props {
   getProducts: Product[] | undefined;
@@ -19,22 +20,29 @@ const ProductPage: React.FC<Props> = ({ getProducts }) => {
   }, []);
 
   return (
-    <div className='product-page-container'>
-      <div className='product-page-info'>
-        <h1>{product?.name}</h1>
-        <p>{product?.description}</p>
-        <h3>${product?.price.toFixed(2)}</h3>
-        <img src={addToCartIcon} alt='Add to cart' />
-        <div className='product-page-tags'>
-          {product?.tags.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
+    <>
+      <div className='product-page-container'>
+        <div className='product-page-info'>
+          <h1>{product?.name}</h1>
+          <p>{product?.description}</p>
+          <h3>${product?.price.toFixed(2)}</h3>
+          <img src={addToCartIcon} alt='Add to cart' />
+          <div className='product-page-tags'>
+            {product?.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </div>
+        <div className='product-page-img'>
+          <img src={product?.img} alt={product?.name} />
         </div>
       </div>
-      <div className='product-page-img'>
-        <img src={product?.img} alt={product?.name} />
-      </div>
-    </div>
+      <Link to='../shop'>
+        <div className='product-page-back-btn'>
+          <img src={backIcon} alt='back' />
+        </div>
+      </Link>
+    </>
   );
 };
 

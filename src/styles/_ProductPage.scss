@@ -1,6 +1,6 @@
 .product-page-container {
   @include fCenter();
-  height: 70vh;
+  height: 60vh;
   width: 100vw;
   gap: 40px;
 
@@ -39,6 +39,24 @@
     img {
       max-height: 50vh;
       max-width: 30vw;
+    }
+  }
+}
+
+.product-page-back-btn {
+  padding: 10px 50px;
+
+  img {
+    height: 40px;
+    width: auto;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out, transform 0.1s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      transform: scale(0.95);
     }
   }
 }
