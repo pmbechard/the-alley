@@ -9,7 +9,6 @@ import {
   User,
   signOut,
   setPersistence,
-  inMemoryPersistence,
   browserSessionPersistence,
 } from 'firebase/auth';
 import {
@@ -107,11 +106,11 @@ const App = () => {
         const provider = new GoogleAuthProvider();
         return signInWithPopup(auth, provider).then((result) => {
           // This gives you a Google Access Token. You can use it to access the Google API.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          let token;
-          if (credential) {
-            token = credential.accessToken;
-          }
+          // const credential = GoogleAuthProvider.credentialFromResult(result);
+          // let token;
+          // if (credential) {
+          //   token = credential.accessToken;
+          // }
           // The signed-in user info.
           const user = result.user;
           setUserInfo(user);

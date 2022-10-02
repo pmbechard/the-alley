@@ -1,0 +1,19 @@
+.product-page-container {
+  @include fCenter();
+  height: 70vh;
+  width: 100vw;
+
+  .product-page-info {
+    width: 30vw;
+    @include fCenter(column);
+  }
+
+  .product-page-img {
+    width: 30vw;
+    @include fCenter();
+
+    img {
+      max-height: 50vh;
+    }
+  }
+}
