@@ -1,29 +1,38 @@
 .product-card {
   height: 400px;
   width: 350px;
-  border: 1px solid $blackColour;
+  border: 1px solid $greyColour;
+  border-radius: 4px;
   box-shadow: 0.5px 0.5px 0.5px $greyColour;
-  transition: background-color 0.4s ease-in-out, transform 0.2s ease-in-out;
+  transition: background-color 0.4s ease-in-out, transform 0.2s ease-in-out,
+    border 0.2s ease-in-out;
 
   &:hover {
     cursor: pointer;
     transform: scale(1.02);
     background-color: $greyColour;
+    border: 2px solid #ddd;
   }
 
   .card-img-area {
     height: 70%;
     @include fCenter();
     background-color: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 
     img {
-      max-width: 298px;
+      max-width: 300px;
+      max-height: calc(400px * 0.65);
       height: auto;
     }
   }
 
   .card-info-area {
+    height: 30%;
     padding: 20px;
     background-color: transparent;
+    @include fCenter(column);
+    align-items: flex-start;
   }
 }

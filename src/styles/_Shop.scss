@@ -1,5 +1,6 @@
 .shop-container {
-  height: $bodyHeight;
+  // height: $bodyHeight;
+  margin: 40px 0;
   @include fCenter();
   flex-wrap: wrap;
   gap: 40px;

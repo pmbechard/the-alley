@@ -13,7 +13,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
       </div>
       <div className='card-info-area'>
         <h3>{product.name}</h3>
-        <p>{product.price}</p>
+        <p>{product.price.toFixed(2)}</p>
       </div>
     </div>
   );
