@@ -165,6 +165,8 @@ const App = () => {
         showAdminPanel={showAdminPanel}
         setShowAdminPanel={setShowAdminPanel}
         getAdmins={getAdmins}
+        getProducts={getProducts}
+        setProductsInView={setProductsInView}
       />
       <Navbar getProducts={getProducts} setProductsInView={setProductsInView} />
       <Routes>

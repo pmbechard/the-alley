@@ -2,10 +2,30 @@
   @include fCenter();
   height: 70vh;
   width: 100vw;
+  gap: 40px;
 
   .product-page-info {
     width: 30vw;
     @include fCenter(column);
+    align-items: flex-start;
+    gap: 20px;
+
+    img {
+      height: 40px;
+      width: auto;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .product-page-tags {
+      span {
+        font-size: 12px;
+        padding-right: 10px;
+      }
+    }
   }
 
   .product-page-img {
@@ -14,6 +34,7 @@
 
     img {
       max-height: 50vh;
+      max-width: 30vw;
     }
   }
 }

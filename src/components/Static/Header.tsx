@@ -6,6 +6,7 @@ import signInIcon from '../../img/signin.png';
 import cartIcon from '../../img/cart.png';
 import signOutIcon from '../../img/signout.png';
 import AdminPanelBtn from '../Admin/AdminPanelBtn';
+import { Product } from '../Interfaces/ProductInterface';
 
 interface Props {
   signIn: () => void;
@@ -14,6 +15,10 @@ interface Props {
   showAdminPanel: boolean;
   setShowAdminPanel: React.Dispatch<React.SetStateAction<boolean>>;
   getAdmins: string[];
+  getProducts: Product[] | undefined;
+  setProductsInView: React.Dispatch<
+    React.SetStateAction<Product[] | undefined>
+  >;
 }
 
 const Header: React.FC<Props> = ({
@@ -23,6 +28,8 @@ const Header: React.FC<Props> = ({
   showAdminPanel,
   setShowAdminPanel,
   getAdmins,
+  getProducts,
+  setProductsInView,
 }) => {
   return (
     <div className='header'>
@@ -34,7 +41,11 @@ const Header: React.FC<Props> = ({
         </h1>
         <p>
           |&nbsp;&nbsp;&nbsp;
-          <Link to='/shop' className='link'>
+          <Link
+            to='/shop'
+            className='link'
+            onClick={() => setProductsInView(getProducts)}
+          >
             Shop
           </Link>
         </p>

@@ -176,6 +176,7 @@
   align-items: center;
   height: 70vh;
   width: 100vw;
+  gap: 40px;
 }
 .product-page-container .product-page-info {
   width: 30vw;
@@ -183,6 +184,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-items: flex-start;
+  gap: 20px;
+}
+.product-page-container .product-page-info img {
+  height: 40px;
+  width: auto;
+  cursor: pointer;
+}
+.product-page-container .product-page-info img:hover {
+  opacity: 0.8;
+}
+.product-page-container .product-page-info .product-page-tags span {
+  font-size: 12px;
+  padding-right: 10px;
 }
 .product-page-container .product-page-img {
   width: 30vw;
@@ -193,6 +208,7 @@
 }
 .product-page-container .product-page-img img {
   max-height: 50vh;
+  max-width: 30vw;
 }
 
 .product-card {
