@@ -1,6 +1,6 @@
 import { Firestore } from 'firebase/firestore';
-import { Product } from '../Interfaces/ProductInterface';
-import ProductCard from '../ProductCard';
+import { Product } from '../../Interfaces/ProductInterface';
+import ProductCard from './ProductCard';
 
 interface Props {
   db: Firestore;

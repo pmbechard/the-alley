@@ -22,7 +22,7 @@ import {
 import Header from './components/Static/Header';
 import Navbar from './components/Static/Navbar';
 import Home from './components/Pages/Home';
-import Shop from './components/Pages/Shop';
+import Shop from './components/Pages/Shop/Shop';
 import Footer from './components/Static/Footer';
 
 import './App.css';
