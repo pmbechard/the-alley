@@ -31,6 +31,8 @@ import {
   Product,
 } from './components/Interfaces/ProductInterface';
 import AdminPanel from './components/Admin/AdminPanel';
+import PageNotFound from './components/Pages/PageNotFound';
+import ProductPage from './components/Pages/Shop/ProductPage';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -154,11 +156,16 @@ const App = () => {
       />
       <Navbar getProducts={getProducts} setProductsInView={setProductsInView} />
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route
+          path='/shop/:name'
+          element={<ProductPage getProducts={getProducts} />}
+        />
         <Route
           path='/shop'
           element={<Shop db={db} products={productsInView || getProducts} />}
         />
+        <Route path='*' element={<PageNotFound />} />
+        <Route path='/' element={<Home />} />
       </Routes>
       <Footer />
       {showAdminPanel && (

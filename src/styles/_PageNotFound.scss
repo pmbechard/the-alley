@@ -1,0 +1,9 @@
+.page-not-found {
+  @include fCenter(column);
+  height: 65vh;
+
+  img {
+    height: 60px;
+    width: auto;
+  }
+}

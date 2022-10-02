@@ -157,6 +157,18 @@
   opacity: 1;
 }
 
+.page-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+}
+.page-not-found img {
+  height: 60px;
+  width: auto;
+}
+
 .product-card {
   height: 400px;
   width: 350px;
@@ -195,6 +207,10 @@
   justify-content: center;
   align-items: center;
   align-items: flex-start;
+}
+
+.product-card-link {
+  text-decoration: none;
 }
 
 #admin-panel-btn {
