@@ -179,7 +179,15 @@ const App = () => {
           element={<Shop db={db} products={productsInView || getProducts} />}
         />
         <Route path='*' element={<PageNotFound />} />
-        <Route path='/' element={<Home />} />
+        <Route
+          path='/'
+          element={
+            <Home
+              getProducts={getProducts}
+              setProductsInView={setProductsInView}
+            />
+          }
+        />
       </Routes>
       <Footer />
       {showAdminPanel && (

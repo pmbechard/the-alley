@@ -77,6 +77,9 @@
   gap: 40px;
   margin: 40px 0;
 }
+.home-container .suggested-area-link {
+  text-decoration: none;
+}
 .home-container .suggested-area {
   height: 40vh;
   width: 70vw;
@@ -191,9 +194,13 @@
   height: 40px;
   width: auto;
   cursor: pointer;
+  transition: opacity 0.2s ease-in-out, transform 0.1s ease-in-out;
 }
 .product-page-container .product-page-info img:hover {
   opacity: 0.8;
+}
+.product-page-container .product-page-info img:active {
+  transform: scale(0.95);
 }
 .product-page-container .product-page-info .product-page-tags span {
   font-size: 12px;
