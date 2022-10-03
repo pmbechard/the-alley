@@ -12,6 +12,7 @@ interface Props {
   ) => Promise<void>;
   setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
   setConfirmCallback: React.Dispatch<() => Promise<void>>;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AdminModifyProductsPage: React.FC<Props> = ({
@@ -21,6 +22,7 @@ const AdminModifyProductsPage: React.FC<Props> = ({
   updateProduct,
   setConfirmMsg,
   setConfirmCallback,
+  setWarningMsg,
 }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const [getCurrentProduct, setCurrentProduct] = useState<Product | null>(null);
@@ -38,19 +40,31 @@ const AdminModifyProductsPage: React.FC<Props> = ({
       tagsElements && tags.push(`${tagsElements[i].value}`);
     }
 
+    const compareTags = (curr: string[], updated: string[]): boolean => {
+      if (curr.length !== updated.length) return false;
+      for (let i = 0; i < curr.length; i++)
+        if (!updated.includes(curr[i])) return false;
+      return true;
+    };
+
     let changes: ModifiedProduct = {};
 
     if (price !== getCurrentProduct?.price) changes['price'] = price;
     if (description !== getCurrentProduct?.description)
       changes['description'] = description;
     if (img !== getCurrentProduct?.img) changes['img'] = img;
-    if (tags !== getCurrentProduct?.tags) changes['tags'] = tags;
+    if (!compareTags(getCurrentProduct?.tags || [], tags))
+      changes['tags'] = tags;
 
-    setConfirmMsg(`Are you sure you want to makes changes to ${name}?`);
-    setConfirmCallback(async function () {
-      updateProduct(changes, name || '');
-    });
-    setAdminPage('confirmation');
+    if (Object.keys(changes).length === 0)
+      setWarningMsg('Change at least one field to continue.');
+    else {
+      setConfirmMsg(`Are you sure you want to makes changes to ${name}?`);
+      setConfirmCallback(async function () {
+        updateProduct(changes, name || '');
+      });
+      setAdminPage('confirmation');
+    }
   };
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
 import { db } from './firebase/firebase-config';
 import {
   getAuth,
@@ -43,8 +42,8 @@ const App = () => {
   const [productsInView, setProductsInView] = useState<Product[]>();
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
   const [getAdmins, setAdmins] = useState<string[]>([]);
-  const userPersistence = getAuth().currentUser;
   const [showWarningMsg, setWarningMsg] = useState<string>('');
+  const userPersistence = getAuth().currentUser;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -55,7 +54,11 @@ const App = () => {
       });
       setProducts(productsList);
     };
-    fetchProducts();
+    try {
+      fetchProducts();
+    } catch (e) {
+      setWarningMsg('Check your connection and try again.');
+    }
     setProductsInView(getProducts);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -124,7 +127,7 @@ const App = () => {
         // Handle Errors here.
         console.log(error);
         setUserInfo(null);
-        setWarningMsg('Sign in failed.');
+        setWarningMsg('Sign in failed. Check your connection and try again.');
       });
 
     await fetchAdmins();

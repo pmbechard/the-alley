@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import warningIcon from '../img/warning.png';
 import closeIcon from '../img/close.png';
 
@@ -8,27 +8,27 @@ interface Props {
 }
 
 const WarningModal: React.FC<Props> = ({ msg, setMsg }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!modalRef) return;
-    let modalStyle = modalRef.current?.style.display;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    modalStyle = 'block';
-
     setTimeout(() => {
-      modalStyle = 'none';
       setMsg('');
-    }, 5000);
+    }, 8000);
   });
 
   return (
-    <div className='warning-modal' ref={modalRef}>
+    <div className='warning-modal'>
       <div className='warning-header'>
-        <img src={warningIcon} alt='Error' />
+        <img src={warningIcon} alt='Error' className='warning-img' />
         <h3>Woah, hold on there...</h3>
       </div>
       <p>{msg}</p>
-      <img src={closeIcon} alt='close' />
+      <img
+        className='close-warning-btn'
+        src={closeIcon}
+        alt='close'
+        onClick={() => {
+          setMsg('');
+        }}
+      />
     </div>
   );
 };

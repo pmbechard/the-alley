@@ -85,6 +85,7 @@ const AdminPanel: React.FC<Props> = ({
             updateProduct={updateProduct}
             setConfirmMsg={setConfirmMsg}
             setConfirmCallback={setConfirmCallback}
+            setWarningMsg={setWarningMsg}
           />
         )}
         {getAdminPage === 'removeProducts' && (
