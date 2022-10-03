@@ -25,6 +25,7 @@ interface Props {
   getAdmins: string[];
   addAdmin: (email: string) => Promise<void>;
   removeAdmin: (email: string) => Promise<void>;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>
 }
 
 const AdminPanel: React.FC<Props> = ({
@@ -38,6 +39,7 @@ const AdminPanel: React.FC<Props> = ({
   getAdmins,
   addAdmin,
   removeAdmin,
+  setWarningMsg
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
   const [confirmMsg, setConfirmMsg] = useState<string>('');
@@ -72,6 +74,7 @@ const AdminPanel: React.FC<Props> = ({
             getProducts={getProducts}
             setConfirmMsg={setConfirmMsg}
             setConfirmCallback={setConfirmCallback}
+            setWarningMsg={setWarningMsg}
           />
         )}
         {getAdminPage === 'modifyProducts' && (

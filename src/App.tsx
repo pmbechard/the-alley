@@ -35,6 +35,7 @@ import {
 import AdminPanel from './components/Admin/AdminPanel';
 import PageNotFound from './components/Pages/PageNotFound';
 import ProductPage from './components/Pages/Shop/ProductPage';
+import WarningModal from './components/WarningModal';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -43,6 +44,7 @@ const App = () => {
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
   const [getAdmins, setAdmins] = useState<string[]>([]);
   const userPersistence = getAuth().currentUser;
+  const [showWarningMsg, setWarningMsg] = useState<string>('');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -73,6 +75,7 @@ const App = () => {
       });
     } catch (e) {
       console.log(e);
+      setWarningMsg("Product couldn't be added to database.");
     }
     // TODO: Add Error/Success message on page
   };
@@ -120,6 +123,7 @@ const App = () => {
         // Handle Errors here.
         console.log(error);
         setUserInfo(null);
+        setWarningMsg('Sign in failed.');
       });
 
     await fetchAdmins();
@@ -202,7 +206,12 @@ const App = () => {
           getAdmins={getAdmins}
           addAdmin={addAdmin}
           removeAdmin={removeAdmin}
+          setWarningMsg={setWarningMsg}
         />
+      )}
+
+      {showWarningMsg && (
+        <WarningModal msg={showWarningMsg} setMsg={setWarningMsg} />
       )}
     </BrowserRouter>
   );

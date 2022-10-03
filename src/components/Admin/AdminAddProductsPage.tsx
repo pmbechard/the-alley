@@ -8,6 +8,7 @@ interface Props {
   getProducts: Product[] | undefined;
   setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
   setConfirmCallback: React.Dispatch<() => Promise<void>>;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AdminAddProductsPage: React.FC<Props> = ({
@@ -16,6 +17,7 @@ const AdminAddProductsPage: React.FC<Props> = ({
   getProducts,
   setConfirmMsg,
   setConfirmCallback,
+  setWarningMsg,
 }) => {
   const nameRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
@@ -39,7 +41,8 @@ const AdminAddProductsPage: React.FC<Props> = ({
       tags.length === 0
     ) {
       // FIXME: find a more elegant way to deal with form validation
-      alert('Please complete all fields to continue.');
+      // alert('Please complete all fields to continue.');
+      setWarningMsg('Please complete all fields to continue.');
     } else {
       const newProduct: Product = {
         name: `${nameRef.current?.value}`,
