@@ -12,6 +12,7 @@ const WarningModal: React.FC<Props> = ({ msg, setMsg }) => {
   useEffect(() => {
     if (!modalRef) return;
     let modalStyle = modalRef.current?.style.display;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     modalStyle = 'block';
 
     setTimeout(() => {

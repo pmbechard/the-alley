@@ -61,6 +61,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    fetchAdmins();
     setUserInfo(userPersistence);
   }, [userPersistence]);
 
