@@ -1,4 +1,5 @@
 import { Firestore } from 'firebase/firestore';
+import { useEffect } from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 import ProductCard from './ProductCard';
 
@@ -8,6 +9,10 @@ interface Props {
 }
 
 const Shop: React.FC<Props> = ({ db, products }) => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  });
+
   return (
     <div className='shop-container'>
       {products ? (
