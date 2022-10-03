@@ -8,6 +8,7 @@ interface Props {
   deleteProduct: (id: string) => Promise<void>;
   setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
   setConfirmCallback: React.Dispatch<() => Promise<void>>;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const AdminRemoveProductsPage: React.FC<Props> = ({
@@ -16,16 +17,20 @@ const AdminRemoveProductsPage: React.FC<Props> = ({
   deleteProduct,
   setConfirmMsg,
   setConfirmCallback,
+  setWarningMsg,
 }) => {
   const selectRef = useRef<HTMLSelectElement>(null);
   const [getCurrentProduct, setCurrentProduct] = useState<string>('');
 
   const handleClick = () => {
-    setConfirmMsg(`Are you sure you want to delete ${getCurrentProduct}?`);
-    setConfirmCallback(async function () {
-      deleteProduct(getCurrentProduct);
-    });
-    setAdminPage('confirmation');
+    if (!getCurrentProduct) setWarningMsg('Select a product to remove.');
+    else {
+      setConfirmMsg(`Are you sure you want to delete ${getCurrentProduct}?`);
+      setConfirmCallback(async function () {
+        deleteProduct(getCurrentProduct);
+      });
+      setAdminPage('confirmation');
+    }
   };
 
   return (

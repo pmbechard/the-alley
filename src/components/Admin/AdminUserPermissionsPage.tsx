@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth';
 import React, { useRef, useState } from 'react';
 import backIcon from '../../img/back.png';
 
@@ -8,6 +9,8 @@ interface Props {
   removeAdmin: (email: string) => Promise<void>;
   setConfirmMsg: React.Dispatch<React.SetStateAction<string>>;
   setConfirmCallback: React.Dispatch<() => Promise<void>>;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
+  getUserInfo: User;
 }
 
 const AdminUserPermissionsPage: React.FC<Props> = ({
@@ -17,20 +20,12 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
   removeAdmin,
   setConfirmMsg,
   setConfirmCallback,
+  setWarningMsg,
+  getUserInfo,
 }) => {
   const [userAction, setUserAction] = useState<number>(0);
   const addEmailRef = useRef<HTMLInputElement>(null);
   const removeEmailRef = useRef<HTMLSelectElement>(null);
-
-  // async function addHandler() {
-  //   await addAdmin(`${addEmailRef.current?.value}`);
-  //   setUserAction(0);
-  // }
-
-  // async function removeHandler() {
-  //   await removeAdmin(`${removeEmailRef.current?.value}`);
-  //   setUserAction(0);
-  // }
 
   return (
     <>
@@ -54,14 +49,18 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
           </form>
           <button
             onClick={() => {
-              setConfirmMsg(
-                `Are you sure you want to add ${addEmailRef.current?.value} as a site administrator?`
-              );
-              setConfirmCallback(async function () {
-                await addAdmin(`${addEmailRef.current?.value}`);
-                setUserAction(0);
-              });
-              setAdminPage('confirmation');
+              if (!addEmailRef.current?.value) {
+                setWarningMsg('Enter a valid email address to continue.');
+              } else {
+                setConfirmMsg(
+                  `Are you sure you want to add ${addEmailRef.current?.value} as a site administrator?`
+                );
+                setConfirmCallback(async function () {
+                  await addAdmin(`${addEmailRef.current?.value}`);
+                  setUserAction(0);
+                });
+                setAdminPage('confirmation');
+              }
             }}
           >
             Add Admin
@@ -87,14 +86,18 @@ const AdminUserPermissionsPage: React.FC<Props> = ({
           </form>
           <button
             onClick={() => {
-              setConfirmMsg(
-                `Are you sure you want to remove ${removeEmailRef.current?.value} as a site administrator?`
-              );
-              setConfirmCallback(async function () {
-                await removeAdmin(`${removeEmailRef.current?.value}`);
-                setUserAction(0);
-              });
-              setAdminPage('confirmation');
+              if (removeEmailRef.current?.value === getUserInfo.email) {
+                setWarningMsg('Cannot remove privileges while logged in.');
+              } else {
+                setConfirmMsg(
+                  `Are you sure you want to remove ${removeEmailRef.current?.value} as a site administrator?`
+                );
+                setConfirmCallback(async function () {
+                  await removeAdmin(`${removeEmailRef.current?.value}`);
+                  setUserAction(0);
+                });
+                setAdminPage('confirmation');
+              }
             }}
           >
             Remove Admin

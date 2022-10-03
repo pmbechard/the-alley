@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import closeIcon from '../../img/close.png';
 import { ModifiedProduct, Product } from '../Interfaces/ProductInterface';
@@ -25,7 +26,8 @@ interface Props {
   getAdmins: string[];
   addAdmin: (email: string) => Promise<void>;
   removeAdmin: (email: string) => Promise<void>;
-  setWarningMsg: React.Dispatch<React.SetStateAction<string>>
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
+  getUserInfo: User;
 }
 
 const AdminPanel: React.FC<Props> = ({
@@ -39,7 +41,8 @@ const AdminPanel: React.FC<Props> = ({
   getAdmins,
   addAdmin,
   removeAdmin,
-  setWarningMsg
+  setWarningMsg,
+  getUserInfo,
 }) => {
   const [getAdminPage, setAdminPage] = useState<string>('');
   const [confirmMsg, setConfirmMsg] = useState<string>('');
@@ -95,9 +98,11 @@ const AdminPanel: React.FC<Props> = ({
             deleteProduct={deleteProduct}
             setConfirmMsg={setConfirmMsg}
             setConfirmCallback={setConfirmCallback}
+            setWarningMsg={setWarningMsg}
           />
         )}
 
+        {/* TODO: Add sales functionality */}
         {getAdminPage === 'scheduleSale' && (
           <AdminScheduleSale setAdminPage={setAdminPage} />
         )}
@@ -113,6 +118,8 @@ const AdminPanel: React.FC<Props> = ({
             removeAdmin={removeAdmin}
             setConfirmMsg={setConfirmMsg}
             setConfirmCallback={setConfirmCallback}
+            setWarningMsg={setWarningMsg}
+            getUserInfo={getUserInfo}
           />
         )}
         {getAdminPage === 'confirmation' && (

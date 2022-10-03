@@ -81,7 +81,6 @@ const App = () => {
       console.log(e);
       setWarningMsg("Product couldn't be added to database.");
     }
-    // TODO: Add Error/Success message on page
   };
 
   const getProductByName = async (name: string): Promise<Product | null> => {
@@ -95,14 +94,22 @@ const App = () => {
     modifiedProduct: ModifiedProduct,
     name: string
   ) => {
-    await updateDoc(doc(db, 'products', name), {
-      ...modifiedProduct,
-    });
+    try {
+      await updateDoc(doc(db, 'products', name), {
+        ...modifiedProduct,
+      });
+    } catch (e) {
+      setWarningMsg('Cannot update. Check your connection and try again.');
+    }
   };
 
   const deleteProduct = async (id: string): Promise<void> => {
-    const productDoc = doc(db, 'products', id);
-    await deleteDoc(productDoc);
+    try {
+      const productDoc = doc(db, 'products', id);
+      await deleteDoc(productDoc);
+    } catch (e) {
+      setWarningMsg('Cannot update. Check your connection and try again.');
+    }
   };
 
   const signIn = async () => {
@@ -154,14 +161,22 @@ const App = () => {
   };
 
   const addAdmin = async (email: string) => {
-    await setDoc(doc(db, 'admins', email), {
-      email: email,
-    });
+    try {
+      await setDoc(doc(db, 'admins', email), {
+        email: email,
+      });
+    } catch (e) {
+      setWarningMsg('Cannot update. Check your connection and try again.');
+    }
   };
 
   const removeAdmin = async (email: string) => {
-    const adminDoc = doc(db, 'admins', email);
-    await deleteDoc(adminDoc);
+    try {
+      const adminDoc = doc(db, 'admins', email);
+      await deleteDoc(adminDoc);
+    } catch (e) {
+      setWarningMsg('Cannot update. Check your connection and try again.');
+    }
   };
 
   return (
@@ -211,6 +226,7 @@ const App = () => {
           addAdmin={addAdmin}
           removeAdmin={removeAdmin}
           setWarningMsg={setWarningMsg}
+          getUserInfo={getUserInfo as User}
         />
       )}
 
