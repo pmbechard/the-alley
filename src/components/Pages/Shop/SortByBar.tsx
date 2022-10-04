@@ -1,4 +1,4 @@
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 
 interface Props {

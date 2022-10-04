@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 import ProductCard from './ProductCard';
 import SortByBar from './SortByBar';
+import loadingIcon from '../../../img/loading.png';
 
 interface Props {
   db: Firestore;
@@ -38,7 +39,9 @@ const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
             );
           })
         ) : (
-          <h3>Loading...</h3>
+          <div className='shop-loading-container'>
+            <img className='loading-icon' src={loadingIcon} alt='loading' />
+          </div>
         )}
       </div>
     </>

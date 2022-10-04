@@ -23,6 +23,24 @@
       border: 1px solid $blackColour;
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
+      contain: content;
+
+      .slideshow-img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+        animation: slow-zoom 5s alternate-reverse infinite;
+      }
+
+      .loading-icon {
+        position: absolute;
+        top: calc(50% - 15px);
+        right: calc(50% - 15px);
+        height: 30px;
+        width: auto;
+        margin: auto;
+        animation: loading-rotate 2s infinite;
+      }
     }
 
     .suggested-text-area {
@@ -44,5 +62,32 @@
         color: white;
       }
     }
+  }
+}
+
+@keyframes slow-zoom {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
