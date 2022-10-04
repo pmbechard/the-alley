@@ -19,8 +19,6 @@ const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
     window.scroll(0, 0);
   });
 
-  useEffect(() => {}, [productsInView]);
-
   return (
     <>
       <SortByBar

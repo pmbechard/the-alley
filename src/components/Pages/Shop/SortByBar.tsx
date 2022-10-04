@@ -44,7 +44,6 @@ const SortByBar: React.FC<Props> = ({
         })
       );
     }
-    setSortBy('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getSortBy]);
 
