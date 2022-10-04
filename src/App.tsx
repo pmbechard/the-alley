@@ -195,7 +195,13 @@ const App = () => {
       <Routes>
         <Route
           path='/shop/:name'
-          element={<ProductPage getProducts={getProducts} />}
+          element={
+            <ProductPage
+              getProducts={getProducts}
+              getUserInfo={getUserInfo}
+              setWarningMsg={setWarningMsg}
+            />
+          }
         />
         <Route
           path='/shop'

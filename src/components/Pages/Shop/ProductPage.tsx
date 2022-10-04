@@ -3,12 +3,19 @@ import { Link, useParams } from 'react-router-dom';
 import { Product } from '../../Interfaces/ProductInterface';
 import addToCartIcon from '../../../img/add-to-cart.png';
 import backIcon from '../../../img/back-2.png';
+import { User } from 'firebase/auth';
 
 interface Props {
   getProducts: Product[] | undefined;
+  getUserInfo: User | null;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ProductPage: React.FC<Props> = ({ getProducts }) => {
+const ProductPage: React.FC<Props> = ({
+  getProducts,
+  getUserInfo,
+  setWarningMsg,
+}) => {
   const { name } = useParams<string>();
   const [product, setProduct] = useState<Product>();
 
@@ -26,7 +33,14 @@ const ProductPage: React.FC<Props> = ({ getProducts }) => {
           <h1>{product?.name}</h1>
           <p>{product?.description}</p>
           <h3>${product?.price.toFixed(2)}</h3>
-          <img src={addToCartIcon} alt='Add to cart' />
+          <img
+            src={addToCartIcon}
+            alt='Add to cart'
+            onClick={() => {
+              if (!getUserInfo)
+                setWarningMsg('Sign in to add products to your cart.');
+            }}
+          />
           <div className='product-page-tags'>
             {product?.tags.map((tag) => (
               <span key={tag}>{tag}</span>
