@@ -25,11 +25,23 @@
       border-bottom-left-radius: 8px;
       contain: content;
 
-      .slideshow-img {
+      .hot-slideshow-img {
         object-fit: contain;
         height: 100%;
         width: 100%;
         animation: slow-zoom 5s alternate-reverse infinite;
+      }
+      .budget-slideshow-img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+        animation: slow-zoom 4s alternate-reverse infinite;
+      }
+      .all-slideshow-img {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+        animation: slow-zoom 4.5s alternate-reverse infinite;
       }
 
       .loading-icon {

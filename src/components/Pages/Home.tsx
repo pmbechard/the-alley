@@ -11,24 +11,6 @@ interface Props {
 }
 
 const Home: React.FC<Props> = ({ getProducts, setProductsInView }) => {
-  // const [hotImg, setHotImg] = useState<string>('');
-  // const hotItems = getProducts?.filter((product) =>
-  //   product.tags.includes('hot')
-  // );
-  // const [hotCounter, setHotCounter] = useState<number>(0);
-
-  // setInterval(() => {
-  //   if (hotItems) {
-  //     setHotImg(hotItems[hotCounter].img);
-  //     setHotCounter(hotCounter + 1);
-  //     if (hotCounter === hotItems?.length - 1) {
-  //       setHotCounter(0);
-  //     }
-  //   }
-  // }, 5000);
-
-  // console.log(hotImg);
-
   return (
     <div className='home-container'>
       <Link to='shop' className='suggested-area-link'>
@@ -41,11 +23,12 @@ const Home: React.FC<Props> = ({ getProducts, setProductsInView }) => {
           }
         >
           <div className='suggested-img-area'>
-            {/* <img src={`${hotImg}`} alt='' /> */}
             <ImgSlideShow
               products={getProducts?.filter((product) =>
                 product.tags.includes('hot')
               )}
+              timer={5000}
+              tag='hot'
             />
           </div>
           <div className='suggested-text-area'>What's hot?</div>
@@ -61,7 +44,15 @@ const Home: React.FC<Props> = ({ getProducts, setProductsInView }) => {
             )
           }
         >
-          <div className='suggested-img-area'></div>
+          <div className='suggested-img-area'>
+            <ImgSlideShow
+              products={getProducts?.filter((product) =>
+                product.tags.includes('budget')
+              )}
+              timer={4000}
+              tag='budget'
+            />
+          </div>
           <div className='suggested-text-area'>On a budget</div>
         </div>
       </Link>
@@ -71,7 +62,9 @@ const Home: React.FC<Props> = ({ getProducts, setProductsInView }) => {
           className='all-items suggested-area'
           onClick={() => setProductsInView(getProducts)}
         >
-          <div className='suggested-img-area'></div>
+          <div className='suggested-img-area'>
+            <ImgSlideShow products={getProducts} timer={4500} tag='all' />
+          </div>
           <div className='suggested-text-area'>View all</div>
         </div>
       </Link>

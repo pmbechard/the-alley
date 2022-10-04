@@ -100,12 +100,26 @@
   border-bottom-left-radius: 8px;
   contain: content;
 }
-.home-container .suggested-area .suggested-img-area .slideshow-img {
+.home-container .suggested-area .suggested-img-area .hot-slideshow-img {
   -o-object-fit: contain;
      object-fit: contain;
   height: 100%;
   width: 100%;
   animation: slow-zoom 5s alternate-reverse infinite;
+}
+.home-container .suggested-area .suggested-img-area .budget-slideshow-img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 100%;
+  width: 100%;
+  animation: slow-zoom 4s alternate-reverse infinite;
+}
+.home-container .suggested-area .suggested-img-area .all-slideshow-img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 100%;
+  width: 100%;
+  animation: slow-zoom 4.5s alternate-reverse infinite;
 }
 .home-container .suggested-area .suggested-img-area .loading-icon {
   position: absolute;
