@@ -1,33 +1,49 @@
 import { Firestore } from 'firebase/firestore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 import ProductCard from './ProductCard';
+import SortByBar from './SortByBar';
 
 interface Props {
   db: Firestore;
-  products: Product[] | undefined;
+  productsInView: Product[] | undefined;
+  setProductsInView: React.Dispatch<
+    React.SetStateAction<Product[] | undefined>
+  >;
 }
 
-const Shop: React.FC<Props> = ({ db, products }) => {
+const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
+  const [getSortBy, setSortBy] = useState<string>('');
+
   useEffect(() => {
     window.scroll(0, 0);
   });
 
+  useEffect(() => {}, [productsInView]);
+
   return (
-    <div className='shop-container'>
-      {products ? (
-        products.map((product) => {
-          return (
-            <ProductCard
-              key={product.name.replace(' ', '-')}
-              product={product}
-            />
-          );
-        })
-      ) : (
-        <h3>Loading...</h3>
-      )}
-    </div>
+    <>
+      <SortByBar
+        productsInView={productsInView}
+        setProductsInView={setProductsInView}
+        getSortBy={getSortBy}
+        setSortBy={setSortBy}
+      />
+      <div className='shop-container'>
+        {productsInView ? (
+          productsInView.map((product) => {
+            return (
+              <ProductCard
+                key={product.name.replace(' ', '-')}
+                product={product}
+              />
+            );
+          })
+        ) : (
+          <h3>Loading...</h3>
+        )}
+      </div>
+    </>
   );
 };
 

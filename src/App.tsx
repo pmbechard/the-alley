@@ -199,7 +199,13 @@ const App = () => {
         />
         <Route
           path='/shop'
-          element={<Shop db={db} products={productsInView || getProducts} />}
+          element={
+            <Shop
+              db={db}
+              productsInView={productsInView || getProducts}
+              setProductsInView={setProductsInView}
+            />
+          }
         />
         <Route path='*' element={<PageNotFound />} />
         <Route

@@ -1,5 +1,9 @@
+.sort-by-bar-container {
+  width: 100vw;
+  @include fCenter();
+}
+
 .shop-container {
-  // height: $bodyHeight;
   margin: 40px 0;
   @include fCenter();
   flex-wrap: wrap;

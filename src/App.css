@@ -121,6 +121,14 @@
   color: white;
 }
 
+.sort-by-bar-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .shop-container {
   margin: 40px 0;
   display: flex;
