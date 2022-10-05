@@ -5,6 +5,8 @@ import addToCartIcon from '../../../img/add-to-cart.png';
 import backIcon from '../../../img/back-2.png';
 import { User } from 'firebase/auth';
 import loadingIcon from '../../../img/loading.png';
+import minusIcon from '../../../img/minus.png';
+import plusIcon from '../../../img/plus.png';
 
 interface Props {
   getProducts: Product[] | undefined;
@@ -37,12 +39,13 @@ const ProductPage: React.FC<Props> = ({
       for (let i = 0; i < getCartItems.length; i++) {
         if (getCartItems[i].name === product?.name) {
           setInCart(true);
+          setProduct(getCartItems[i]);
           return;
         }
       }
     };
     checkInCart();
-  }, [getCartItems, getProducts, name, product?.name]);
+  }, [getCartItems, getProducts, name, product?.name, product?.quantity]);
 
   const processAddToCart = () => {
     addNewToCart(product as Product);
@@ -58,7 +61,11 @@ const ProductPage: React.FC<Props> = ({
               <p>{product?.description}</p>
               <h3>${product?.price.toFixed(2)}</h3>
               {inCart ? (
-                <p>{getCartItems && getCartItems[0].name}</p>
+                <div className='product-quantity-bar'>
+                  <img src={minusIcon} alt='remove' />
+                  <p>In cart: {getCartItems && product.quantity}</p>
+                  <img src={plusIcon} alt='add' />
+                </div>
               ) : (
                 <img
                   src={addToCartIcon}

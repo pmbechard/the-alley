@@ -4,7 +4,6 @@ import { Product } from '../../Interfaces/ProductInterface';
 import ProductCard from './ProductCard';
 import SortByBar from './SortByBar';
 import loadingIcon from '../../../img/loading.png';
-import { User } from 'firebase/auth';
 
 interface Props {
   db: Firestore;

@@ -72,6 +72,7 @@ const App = () => {
 
   useEffect(() => {
     fetchCartItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getUserInfo]);
 
   const addProductToFirebase = async (product: Product): Promise<void> => {

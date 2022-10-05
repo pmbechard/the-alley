@@ -311,6 +311,17 @@
 .product-page-container .product-page-info img:active {
   transform: scale(0.95);
 }
+.product-page-container .product-page-info .product-quantity-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.product-page-container .product-page-info .product-quantity-bar img {
+  height: 20px;
+  width: auto;
+}
 .product-page-container .product-page-info .product-page-tags span {
   font-size: 12px;
   padding-right: 10px;
