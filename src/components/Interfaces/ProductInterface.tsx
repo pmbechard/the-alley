@@ -4,6 +4,7 @@ export interface Product {
   description: string;
   img: string;
   tags: string[];
+  quantity?: number;
 }
 
 export interface ModifiedProduct {

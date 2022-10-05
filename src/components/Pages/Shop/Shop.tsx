@@ -34,7 +34,7 @@ const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
           productsInView.map((product) => {
             return (
               <ProductCard
-                key={product.name.replace(' ', '-')}
+                key={product.name.replaceAll(' ', '-')}
                 product={product}
               />
             );

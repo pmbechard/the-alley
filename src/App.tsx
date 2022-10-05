@@ -18,6 +18,7 @@ import {
   getDoc,
   updateDoc,
   deleteDoc,
+  arrayUnion,
 } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
@@ -44,6 +45,7 @@ const App = () => {
   const [getAdmins, setAdmins] = useState<string[]>([]);
   const [showWarningMsg, setWarningMsg] = useState<string>('');
   const userPersistence = getAuth().currentUser;
+  const [getCartItems, setCartItems] = useState<Product[]>();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -67,6 +69,10 @@ const App = () => {
     fetchAdmins();
     setUserInfo(userPersistence);
   }, [userPersistence]);
+
+  useEffect(() => {
+    fetchCartItems();
+  }, [getUserInfo]);
 
   const addProductToFirebase = async (product: Product): Promise<void> => {
     try {
@@ -99,7 +105,7 @@ const App = () => {
         ...modifiedProduct,
       });
     } catch (e) {
-      setWarningMsg('Cannot update. Check your connection and try again.');
+      setWarningMsg("Can't update. Check your connection and try again.");
     }
   };
 
@@ -108,7 +114,7 @@ const App = () => {
       const productDoc = doc(db, 'products', id);
       await deleteDoc(productDoc);
     } catch (e) {
-      setWarningMsg('Cannot update. Check your connection and try again.');
+      setWarningMsg("Can't update. Check your connection and try again.");
     }
   };
 
@@ -166,7 +172,7 @@ const App = () => {
         email: email,
       });
     } catch (e) {
-      setWarningMsg('Cannot update. Check your connection and try again.');
+      setWarningMsg("Can't update. Check your connection and try again.");
     }
   };
 
@@ -175,7 +181,32 @@ const App = () => {
       const adminDoc = doc(db, 'admins', email);
       await deleteDoc(adminDoc);
     } catch (e) {
-      setWarningMsg('Cannot update. Check your connection and try again.');
+      setWarningMsg("Can't update. Check your connection and try again.");
+    }
+  };
+
+  const fetchCartItems = async () => {
+    try {
+      const itemsDoc = doc(db, 'cart', `${getUserInfo?.email}`);
+      const itemRef = await getDoc(itemsDoc);
+      const itemData: Product[] = itemRef.data()?.items as Product[];
+      setCartItems(itemData);
+    } catch (e) {}
+  };
+
+  const addNewToCart = async (product: Product): Promise<void> => {
+    try {
+      if (getCartItems) {
+        await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+          items: arrayUnion({ ...product, quantity: 1 }),
+        });
+      } else {
+        await setDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+          items: arrayUnion({ ...product, quantity: 1 }),
+        });
+      }
+    } catch (e) {
+      setWarningMsg("Can't update. Check your connection and try again.");
     }
   };
 
@@ -200,6 +231,8 @@ const App = () => {
               getProducts={getProducts}
               getUserInfo={getUserInfo}
               setWarningMsg={setWarningMsg}
+              addNewToCart={addNewToCart}
+              getCartItems={getCartItems}
             />
           }
         />

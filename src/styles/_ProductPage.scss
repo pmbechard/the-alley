@@ -1,6 +1,6 @@
 .product-page-container {
   @include fCenter();
-  height: 60vh;
+  // height: 60vh;
   width: 100vw;
   gap: 40px;
 
@@ -58,5 +58,24 @@
     &:active {
       transform: scale(0.95);
     }
+  }
+}
+
+.product-loading-container {
+  @include fCenter();
+  height: 20vh;
+  .loading-icon {
+    height: 30px;
+    width: auto;
+    animation: loading-rotate 2s infinite;
+  }
+}
+
+@keyframes loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
