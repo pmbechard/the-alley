@@ -12,4 +12,6 @@ root.render(
 );
 
 // TODO: Add sales options from admin panel
+// TODO: Add cart panel
+// TODO: Add checkout page
 // FIXME: Sort is reverted after switching categories

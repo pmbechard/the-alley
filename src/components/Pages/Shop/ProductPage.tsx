@@ -5,8 +5,7 @@ import addToCartIcon from '../../../img/add-to-cart.png';
 import backIcon from '../../../img/back-2.png';
 import { User } from 'firebase/auth';
 import loadingIcon from '../../../img/loading.png';
-import minusIcon from '../../../img/minus.png';
-import plusIcon from '../../../img/plus.png';
+import QuantityBar from './QuantityBar';
 
 interface Props {
   getProducts: Product[] | undefined;
@@ -14,6 +13,7 @@ interface Props {
   setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
   addNewToCart: (product: Product) => Promise<void>;
   getCartItems: Product[] | undefined;
+  modifyCartItem: (product: Product, quantity: number) => Promise<void>;
 }
 
 const ProductPage: React.FC<Props> = ({
@@ -22,6 +22,7 @@ const ProductPage: React.FC<Props> = ({
   setWarningMsg,
   addNewToCart,
   getCartItems,
+  modifyCartItem,
 }) => {
   const { name } = useParams<string>();
   const [product, setProduct] = useState<Product>();
@@ -45,7 +46,7 @@ const ProductPage: React.FC<Props> = ({
       }
     };
     checkInCart();
-  }, [getCartItems, getProducts, name, product?.name, product?.quantity]);
+  }, [getCartItems, getProducts, name, product]);
 
   const processAddToCart = () => {
     addNewToCart(product as Product);
@@ -61,11 +62,11 @@ const ProductPage: React.FC<Props> = ({
               <p>{product?.description}</p>
               <h3>${product?.price.toFixed(2)}</h3>
               {inCart ? (
-                <div className='product-quantity-bar'>
-                  <img src={minusIcon} alt='remove' />
-                  <p>In cart: {getCartItems && product.quantity}</p>
-                  <img src={plusIcon} alt='add' />
-                </div>
+                <QuantityBar
+                  product={product}
+                  quantity={product.quantity || 1}
+                  modifyCartItem={modifyCartItem}
+                />
               ) : (
                 <img
                   src={addToCartIcon}

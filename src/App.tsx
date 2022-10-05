@@ -18,7 +18,7 @@ import {
   getDoc,
   updateDoc,
   deleteDoc,
-  arrayUnion,
+  DocumentData,
 } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
@@ -190,22 +190,37 @@ const App = () => {
     try {
       const itemsDoc = doc(db, 'cart', `${getUserInfo?.email}`);
       const itemRef = await getDoc(itemsDoc);
-      const itemData: Product[] = itemRef.data()?.items as Product[];
-      setCartItems(itemData);
-    } catch (e) {}
+      const itemData: DocumentData | undefined = itemRef.data();
+      setCartItems(Object.values(itemData ? itemData : {}));
+    } catch (e) {
+      console.log('Issue fetching cart items.');
+    }
   };
 
   const addNewToCart = async (product: Product): Promise<void> => {
     try {
       if (getCartItems) {
         await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-          items: arrayUnion({ ...product, quantity: 1 }),
+          [product.name]: { ...product, quantity: 1 },
         });
       } else {
         await setDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-          items: arrayUnion({ ...product, quantity: 1 }),
+          [product.name]: { ...product, quantity: 1 },
         });
       }
+    } catch (e) {
+      setWarningMsg("Can't update. Check your connection and try again.");
+    }
+  };
+  
+  const modifyCartItem = async (
+    product: Product,
+    quantity: number
+  ): Promise<void> => {
+    try {
+      await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+        [product.name]: { quantity: quantity },
+      });
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
     }
@@ -234,6 +249,7 @@ const App = () => {
               setWarningMsg={setWarningMsg}
               addNewToCart={addNewToCart}
               getCartItems={getCartItems}
+              modifyCartItem={modifyCartItem}
             />
           }
         />
