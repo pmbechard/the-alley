@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import { db } from './firebase/firebase-config';
 import {
   getAuth,
@@ -26,16 +27,17 @@ import Navbar from './components/Static/Navbar';
 import Home from './components/Pages/Home';
 import Shop from './components/Pages/Shop/Shop';
 import Footer from './components/Static/Footer';
-
-import './App.css';
-import {
-  ModifiedProduct,
-  Product,
-} from './components/Interfaces/ProductInterface';
 import AdminPanel from './components/Admin/AdminPanel';
 import PageNotFound from './components/Pages/PageNotFound';
 import ProductPage from './components/Pages/Shop/ProductPage';
 import WarningModal from './components/WarningModal';
+
+import './App.css';
+
+import {
+  ModifiedProduct,
+  Product,
+} from './components/Interfaces/ProductInterface';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -199,31 +201,26 @@ const App = () => {
 
   const addNewToCart = async (product: Product): Promise<void> => {
     try {
-      if (getCartItems) {
-        await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-          [product.name]: { ...product, quantity: 1 },
-        });
-      } else {
-        await setDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-          [product.name]: { ...product, quantity: 1 },
-        });
-      }
+      await setDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+        [product.name]: { ...product, quantity: 1 },
+      });
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
     }
   };
-  
+
   const modifyCartItem = async (
     product: Product,
     quantity: number
   ): Promise<void> => {
     try {
       await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-        [product.name]: { quantity: quantity },
+        [product.name]: { ...product, quantity: quantity },
       });
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
     }
+    fetchCartItems();
   };
 
   return (
