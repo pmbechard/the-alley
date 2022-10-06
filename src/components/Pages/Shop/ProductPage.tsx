@@ -64,7 +64,7 @@ const ProductPage: React.FC<Props> = ({
               {inCart ? (
                 <QuantityBar
                   product={product}
-                  quantity={product.quantity || 1}
+                  quantity={product.quantity || 0}
                   modifyCartItem={modifyCartItem}
                 />
               ) : (

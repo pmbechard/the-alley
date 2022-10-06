@@ -20,6 +20,7 @@ import {
   updateDoc,
   deleteDoc,
   DocumentData,
+  deleteField,
 } from 'firebase/firestore';
 
 import Header from './components/Static/Header';
@@ -213,9 +214,25 @@ const App = () => {
     product: Product,
     quantity: number
   ): Promise<void> => {
+    if (quantity === 0) {
+      deleteCartItem(product);
+    } else {
+      try {
+        await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+          [product.name]: { ...product, quantity: quantity },
+        });
+      } catch (e) {
+        setWarningMsg("Can't update. Check your connection and try again.");
+      }
+    }
+    fetchCartItems();
+  };
+
+  const deleteCartItem = async (product: Product) => {
     try {
-      await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-        [product.name]: { ...product, quantity: quantity },
+      const productDoc = doc(db, 'cart', `${getUserInfo?.email}`);
+      await updateDoc(productDoc, {
+        [product.name]: deleteField(),
       });
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
