@@ -1,6 +1,6 @@
 .product-page-container {
   @include fCenter();
-  // height: 60vh;
+  min-height: 60vh;
   width: 100vw;
   gap: 40px;
 

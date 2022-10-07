@@ -20,6 +20,7 @@ interface Props {
     React.SetStateAction<Product[] | undefined>
   >;
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+  getCartItems: Product[] | undefined;
 }
 
 const Header: React.FC<Props> = ({
@@ -32,7 +33,16 @@ const Header: React.FC<Props> = ({
   getProducts,
   setProductsInView,
   setShowCart,
+  getCartItems,
 }) => {
+  const getTotalNumberOfCartItems = (): number => {
+    if (!getCartItems || getCartItems.length === 0) return 0;
+    let total = 0;
+    getCartItems.forEach((item) => {
+      total += item.quantity || 1;
+    });
+    return total;
+  };
   return (
     <div className='header'>
       <div className='title-area'>
@@ -58,6 +68,9 @@ const Header: React.FC<Props> = ({
             Hi, {getUserInfo.displayName?.split(' ')[0]}
           </p>
           <p className='header-link'>
+            {getCartItems && getCartItems.length > 0 && (
+              <div className='cart-counter'>{getTotalNumberOfCartItems()}</div>
+            )}
             <img src={cartIcon} alt='cart' onClick={() => setShowCart(true)} />
             Cart
           </p>

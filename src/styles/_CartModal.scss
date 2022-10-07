@@ -68,10 +68,18 @@
       }
 
       .cart-product-info {
+        p {
+          font-weight: bold;
+        }
         .product-quantity-bar {
           img {
             height: 15px;
             width: auto;
+          }
+
+          p {
+            font-size: 14px;
+            font-weight: normal;
           }
         }
 

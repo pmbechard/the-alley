@@ -255,6 +255,7 @@ const App = () => {
         getProducts={getProducts}
         setProductsInView={setProductsInView}
         setShowCart={setShowCart}
+        getCartItems={getCartItems}
       />
       <Navbar getProducts={getProducts} setProductsInView={setProductsInView} />
       <Routes>
