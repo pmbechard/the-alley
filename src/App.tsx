@@ -39,6 +39,7 @@ import {
   ModifiedProduct,
   Product,
 } from './components/Interfaces/ProductInterface';
+import CartModal from './components/Pages/Shop/CartModal';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -49,6 +50,7 @@ const App = () => {
   const [showWarningMsg, setWarningMsg] = useState<string>('');
   const userPersistence = getAuth().currentUser;
   const [getCartItems, setCartItems] = useState<Product[]>();
+  const [showCart, setShowCart] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -251,6 +253,7 @@ const App = () => {
         getAdmins={getAdmins}
         getProducts={getProducts}
         setProductsInView={setProductsInView}
+        setShowCart={setShowCart}
       />
       <Navbar getProducts={getProducts} setProductsInView={setProductsInView} />
       <Routes>
@@ -304,6 +307,10 @@ const App = () => {
           setWarningMsg={setWarningMsg}
           getUserInfo={getUserInfo as User}
         />
+      )}
+
+      {showCart && (
+        <CartModal getCartItems={getCartItems} setCartItems={setCartItems} setShowCart={setShowCart} />
       )}
 
       {showWarningMsg && (

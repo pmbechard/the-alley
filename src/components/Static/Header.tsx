@@ -19,6 +19,7 @@ interface Props {
   setProductsInView: React.Dispatch<
     React.SetStateAction<Product[] | undefined>
   >;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Header: React.FC<Props> = ({
@@ -30,6 +31,7 @@ const Header: React.FC<Props> = ({
   getAdmins,
   getProducts,
   setProductsInView,
+  setShowCart,
 }) => {
   return (
     <div className='header'>
@@ -56,7 +58,7 @@ const Header: React.FC<Props> = ({
             Hi, {getUserInfo.displayName?.split(' ')[0]}
           </p>
           <p className='header-link'>
-            <img src={cartIcon} alt='cart' />
+            <img src={cartIcon} alt='cart' onClick={() => setShowCart(true)} />
             Cart
           </p>
           <p onClick={signUserOut} className='header-link'>
