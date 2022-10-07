@@ -1,0 +1,29 @@
+.central-loading-backdrop {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: $blackColour;
+  opacity: 0.6;
+  z-index: 10;
+  
+  .central-loading-icon {
+    position: fixed;
+    top: calc(50vh - 20px);
+    left: calc(50vw - 20px);
+    height: 40px;
+    width: 40px;
+    animation: loading-rotate 2s infinite;
+    z-index: 11;
+  }
+}
+
+@keyframes loading-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

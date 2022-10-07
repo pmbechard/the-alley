@@ -40,6 +40,7 @@ import {
   Product,
 } from './components/Interfaces/ProductInterface';
 import CartModal from './components/Pages/Shop/CartModal';
+import CentralLoadingIcon from './components/CentralLoadingIcon';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -51,6 +52,7 @@ const App = () => {
   const userPersistence = getAuth().currentUser;
   const [getCartItems, setCartItems] = useState<Product[]>();
   const [showCart, setShowCart] = useState<boolean>(false);
+  const [showLoading, setShowLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -203,6 +205,7 @@ const App = () => {
   };
 
   const addNewToCart = async (product: Product): Promise<void> => {
+    setShowLoading(true);
     try {
       await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
         [product.name]: { ...product, quantity: 1 },
@@ -210,13 +213,15 @@ const App = () => {
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
     }
-    fetchCartItems();
+    await fetchCartItems();
+    setShowLoading(false);
   };
 
   const modifyCartItem = async (
     product: Product,
     quantity: number
   ): Promise<void> => {
+    setShowLoading(true);
     if (quantity === 0) {
       deleteCartItem(product);
     } else {
@@ -228,7 +233,8 @@ const App = () => {
         setWarningMsg("Can't update. Check your connection and try again.");
       }
     }
-    fetchCartItems();
+    await fetchCartItems();
+    setShowLoading(false);
   };
 
   const deleteCartItem = async (product: Product) => {
@@ -319,6 +325,8 @@ const App = () => {
           modifyCartItem={modifyCartItem}
         />
       )}
+
+      {showLoading && <CentralLoadingIcon />}
 
       {showWarningMsg && (
         <WarningModal msg={showWarningMsg} setMsg={setWarningMsg} />
