@@ -2,6 +2,7 @@ import React from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 import errorIcon from '../../../img/error.png';
 import cartIcon from '../../../img/cart.png';
+import backIcon from '../../../img/back.png';
 import QuantityBar from './QuantityBar';
 
 interface Props {
@@ -21,6 +22,14 @@ const CartModal: React.FC<Props> = ({
     <div className='cart-container'>
       <div className='cart-backdrop' onClick={() => setShowCart(false)}></div>
       <div className='cart-modal'>
+        <img
+          src={backIcon}
+          alt='back'
+          className='cart-back-btn'
+          onClick={() => {
+            setShowCart(false);
+          }}
+        />
         <img src={cartIcon} alt='cart' />
         <h1>Your Items:</h1>
         {getCartItems && getCartItems.length > 0 ? (

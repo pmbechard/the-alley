@@ -25,6 +25,16 @@
     // box-shadow: 1px 1px 3px $blackColour;
     animation: slide-in 0.4s ease-in-out;
 
+    .cart-back-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 25px;
+      width: auto;
+      cursor: pointer;
+      transition: opacity 0.2s ease-in-out;
+    }
+
     .empty-cart-msg {
       height: 100%;
       width: 100%;
