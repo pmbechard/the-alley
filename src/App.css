@@ -339,6 +339,8 @@
 }
 
 .product-page-back-btn {
+  position: absolute;
+  top: calc(50% - 20px);
   padding: 10px 50px;
 }
 .product-page-back-btn img {
