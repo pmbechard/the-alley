@@ -24,16 +24,6 @@
       }
     }
 
-    .product-quantity-bar {
-      @include fCenter();
-      gap: 10px;
-
-      img {
-        height: 20px;
-        width: auto;
-      }
-    }
-
     .product-page-tags {
       span {
         font-size: 12px;
@@ -74,6 +64,7 @@
 .product-loading-container {
   @include fCenter();
   height: 20vh;
+
   .loading-icon {
     height: 30px;
     width: auto;
@@ -87,5 +78,16 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+.product-quantity-bar {
+  @include fCenter();
+  gap: 10px;
+
+  img {
+    height: 20px;
+    width: auto;
+    cursor: pointer;
   }
 }

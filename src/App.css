@@ -311,17 +311,6 @@
 .product-page-container .product-page-info img:active {
   transform: scale(0.95);
 }
-.product-page-container .product-page-info .product-quantity-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-.product-page-container .product-page-info .product-quantity-bar img {
-  height: 20px;
-  width: auto;
-}
 .product-page-container .product-page-info .product-page-tags span {
   font-size: 12px;
   padding-right: 10px;
@@ -376,6 +365,19 @@
     transform: rotate(360deg);
   }
 }
+.product-quantity-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.product-quantity-bar img {
+  height: 20px;
+  width: auto;
+  cursor: pointer;
+}
+
 .product-card {
   height: 400px;
   width: 350px;
@@ -431,13 +433,13 @@
 }
 .cart-container .cart-modal {
   position: fixed;
-  right: calc(50% - 200px);
-  top: 50px;
-  width: 400px;
-  height: 700px;
+  right: 0;
+  top: 0;
+  width: 500px;
+  height: 100vh;
   background-color: #eee;
-  border: 3px solid #111;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -448,13 +450,43 @@
   -webkit-animation: slide-in 0.4s ease-in-out;
           animation: slide-in 0.4s ease-in-out;
 }
+.cart-container .cart-modal .empty-cart-msg {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.cart-container .cart-modal .cart-item {
+  border: 1px solid #111;
+  width: 100%;
+  margin: 20px 0;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: center;
+}
+.cart-container .cart-modal .cart-item .cart-product-img {
+  max-height: 80px;
+  max-width: 80px;
+}
+.cart-container .cart-modal .cart-item .product-quantity-bar img {
+  height: 15px;
+  width: auto;
+}
 
 @-webkit-keyframes slide-in {
   0% {
     right: -400px;
   }
   100% {
-    right: calc(50% - 200px);
+    right: 0;
   }
 }
 
@@ -463,7 +495,7 @@
     right: -400px;
   }
   100% {
-    right: calc(50% - 200px);
+    right: 0;
   }
 }
 #admin-panel-btn {

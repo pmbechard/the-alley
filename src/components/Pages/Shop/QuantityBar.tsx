@@ -21,7 +21,7 @@ const QuantityBar: React.FC<Props> = ({
         alt='remove'
         onClick={() => modifyCartItem(product, quantity - 1)}
       />
-      <p>In cart: {quantity}</p>
+      <p>Quantity: {quantity}</p>
       <img
         src={plusIcon}
         alt='add'

@@ -204,12 +204,13 @@ const App = () => {
 
   const addNewToCart = async (product: Product): Promise<void> => {
     try {
-      await setDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+      await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
         [product.name]: { ...product, quantity: 1 },
       });
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
     }
+    fetchCartItems();
   };
 
   const modifyCartItem = async (
@@ -310,7 +311,12 @@ const App = () => {
       )}
 
       {showCart && (
-        <CartModal getCartItems={getCartItems} setCartItems={setCartItems} setShowCart={setShowCart} />
+        <CartModal
+          getCartItems={getCartItems}
+          setCartItems={setCartItems}
+          setShowCart={setShowCart}
+          modifyCartItem={modifyCartItem}
+        />
       )}
 
       {showWarningMsg && (
