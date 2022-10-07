@@ -18,6 +18,14 @@ const CartModal: React.FC<Props> = ({
   setShowCart,
   modifyCartItem,
 }) => {
+  const getTotal = (): number => {
+    let total = 0;
+    getCartItems?.forEach((item) => {
+      total += item.price * (item.quantity || 1);
+    });
+    return total;
+  };
+
   return (
     <div className='cart-container'>
       <div className='cart-backdrop' onClick={() => setShowCart(false)}></div>
@@ -36,11 +44,13 @@ const CartModal: React.FC<Props> = ({
           getCartItems.map((item) => {
             return (
               <div key={item.name.replace(' ', '-')} className='cart-item'>
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className='cart-product-img'
-                />
+                <div className='cart-product-img-container'>
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className='cart-product-img'
+                  />
+                </div>
                 <div className='cart-product-info'>
                   <p>{item.name}</p>
                   <QuantityBar
@@ -58,7 +68,7 @@ const CartModal: React.FC<Props> = ({
                   />
                 </div>
                 <div className='cart-product-subtotal'>
-                  {item.price * (item.quantity || 1)}
+                  {(item.price * (item.quantity || 1)).toFixed(2)}
                 </div>
               </div>
             );
@@ -68,6 +78,16 @@ const CartModal: React.FC<Props> = ({
             <img src={errorIcon} alt='error' />
             <h3>Your cart is empty.</h3>
           </div>
+        )}
+
+        {getCartItems && getCartItems.length > 0 && (
+          <>
+            <div className='cart-subtotal-area'>
+              <h2>Subtotal:</h2>
+              <h2>${getTotal().toFixed(2)}</h2>
+            </div>
+            <button className='checkout-btn'>Checkout</button>
+          </>
         )}
       </div>
     </div>
