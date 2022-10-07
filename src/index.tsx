@@ -11,7 +11,5 @@ root.render(
   </React.StrictMode>
 );
 
-// TODO: Add sales options from admin panel
+// TODO: Add sales options from admin panel with banner and indicators to match
 // TODO: Add checkout page
-// TODO: Make responsive
-// FIXME: Add central loading icon for async/await calls in App.tsx

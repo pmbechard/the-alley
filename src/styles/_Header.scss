@@ -4,6 +4,7 @@
   height: $headerHeight;
   padding: 10px 40px;
   background-color: $greyColour;
+  flex-wrap: wrap;
 
   .title-area {
     @include fCenter();

@@ -1,5 +1,6 @@
 .navbar {
   @include fCenter();
+  flex-wrap: wrap;
   list-style: none;
   gap: 30px;
   height: $navbarHeight;

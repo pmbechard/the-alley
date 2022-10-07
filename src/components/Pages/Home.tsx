@@ -57,7 +57,7 @@ const Home: React.FC<Props> = ({ getProducts, setProductsInView }) => {
         </div>
       </Link>
 
-      <Link to='/shop' className='link'>
+      <Link to='/shop' className='suggested-area-link'>
         <div
           className='all-items suggested-area'
           onClick={() => setProductsInView(getProducts)}
