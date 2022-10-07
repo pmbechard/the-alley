@@ -12,4 +12,4 @@ root.render(
 );
 
 // TODO: Add sales options from admin panel with banner and indicators to match
-// TODO: Add checkout page
+// FIXME: Add entrance animation for cart modal

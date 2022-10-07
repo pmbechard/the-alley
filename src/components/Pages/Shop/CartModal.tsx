@@ -10,6 +10,7 @@ interface Props {
   setCartItems: React.Dispatch<React.SetStateAction<Product[] | undefined>>;
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
   modifyCartItem: (product: Product, quantity: number) => Promise<void>;
+  setShowCheckout: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CartModal: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const CartModal: React.FC<Props> = ({
   setCartItems,
   setShowCart,
   modifyCartItem,
+  setShowCheckout,
 }) => {
   const getTotal = (): number => {
     let total = 0;
@@ -86,7 +88,15 @@ const CartModal: React.FC<Props> = ({
               <h2>Subtotal:</h2>
               <h2>${getTotal().toFixed(2)}</h2>
             </div>
-            <button className='checkout-btn'>Checkout</button>
+            <button
+              className='checkout-btn'
+              onClick={() => {
+                setShowCart(false);
+                setShowCheckout(true);
+              }}
+            >
+              Checkout
+            </button>
           </>
         )}
       </div>

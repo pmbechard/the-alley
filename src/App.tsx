@@ -41,6 +41,7 @@ import {
 } from './components/Interfaces/ProductInterface';
 import CartModal from './components/Pages/Shop/CartModal';
 import CentralLoadingIcon from './components/CentralLoadingIcon';
+import CheckoutPage from './components/Pages/Shop/CheckoutPage';
 
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
@@ -53,6 +54,7 @@ const App = () => {
   const [getCartItems, setCartItems] = useState<Product[]>();
   const [showCart, setShowCart] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(false);
+  const [showCheckout, setShowCheckout] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -323,6 +325,14 @@ const App = () => {
           setCartItems={setCartItems}
           setShowCart={setShowCart}
           modifyCartItem={modifyCartItem}
+          setShowCheckout={setShowCheckout}
+        />
+      )}
+
+      {showCheckout && (
+        <CheckoutPage
+          getCartItems={getCartItems}
+          setShowCheckout={setShowCheckout}
         />
       )}
 
