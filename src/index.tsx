@@ -14,5 +14,4 @@ root.render(
 // TODO: Add sales options from admin panel
 // TODO: Add checkout page
 // TODO: Make responsive
-// FIXME: Sort is reverted after switching categories
 // FIXME: Add central loading icon for async/await calls in App.tsx

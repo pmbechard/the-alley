@@ -20,6 +20,37 @@ const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
     window.scroll(0, 0);
   });
 
+  const sortProductsInView = () => {
+    if (!productsInView) return;
+
+    if (getSortBy === 'z-a') {
+      setProductsInView(
+        productsInView.sort((a: Product, b: Product) => {
+          return a.name.toLowerCase() >= b.name.toLowerCase() ? -1 : 1;
+        })
+      );
+    } else if (getSortBy === 'price-l-h') {
+      setProductsInView(
+        productsInView.sort((a: Product, b: Product) => {
+          return a.price >= b.price ? 1 : -1;
+        })
+      );
+    } else if (getSortBy === 'price-h-l') {
+      setProductsInView(
+        productsInView.sort((a: Product, b: Product) => {
+          return a.price >= b.price ? -1 : 1;
+        })
+      );
+    } else {
+      setProductsInView(
+        productsInView.sort((a: Product, b: Product) => {
+          return a.name.toLowerCase() >= b.name.toLowerCase() ? 1 : -1;
+        })
+      );
+    }
+    return () => setSortBy('');
+  }
+
   return (
     <>
       <SortByBar
@@ -27,6 +58,7 @@ const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
         setProductsInView={setProductsInView}
         getSortBy={getSortBy}
         setSortBy={setSortBy}
+        sortProductsInView={sortProductsInView}
       />
       <div className='shop-container'>
         {productsInView ? (
