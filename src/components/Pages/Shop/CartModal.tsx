@@ -16,7 +16,7 @@ const CartModal: React.FC<Props> = ({
     <div className='cart-container'>
       <div className='cart-backdrop' onClick={() => setShowCart(false)}></div>
       <div className='cart-modal'>
-        {getCartItems ? (
+        {getCartItems && getCartItems.length > 0 ? (
           getCartItems.map((item) => {
             return (
               <div key={item.name.replace(' ', '-')} className='cart-item'>
