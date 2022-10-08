@@ -14,4 +14,4 @@ root.render(
 // TODO: Add sales options from admin panel with banner and indicators to match
 // FIXME: Add entrance animation for cart modal
 // FIXME: Sort bar
-// FIXME: 
+// FIXME: Add quantity bar to product cards

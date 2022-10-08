@@ -17,7 +17,7 @@ const AdminPanelBtn: React.FC<Props> = ({
         onClick={() => setShowAdminPanel(true)}
         src={adminIcon}
         alt='admin'
-      ></img>
+      />
     </>
   );
 };

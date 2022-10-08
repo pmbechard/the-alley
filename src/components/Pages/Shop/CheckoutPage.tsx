@@ -48,7 +48,9 @@ const CheckoutPage: React.FC<Props> = ({ getCartItems, setShowCheckout }) => {
           <h2>Subtotal:</h2>
           <h2>${getTotal().toFixed(2)}</h2>
         </div>
-        <button>Proceed to Payment</button>
+        <Link to='/'>
+          <button className='checkout-proceed-btn'>Proceed to Payment</button>
+        </Link>
       </div>
     </div>
   );
