@@ -1,62 +1,20 @@
-import React, { useEffect } from 'react';
-import { Product } from '../../Interfaces/ProductInterface';
+import React from 'react';
 
 interface Props {
-  productsInView: Product[] | undefined;
-  setProductsInView: React.Dispatch<
-    React.SetStateAction<Product[] | undefined>
-  >;
   getSortBy: string;
   setSortBy: React.Dispatch<React.SetStateAction<string>>;
-  sortProductsInView: () => (() => void) | undefined;
 }
 
-const SortByBar: React.FC<Props> = ({
-  productsInView,
-  setProductsInView,
-  getSortBy,
-  setSortBy,
-  sortProductsInView,
-}) => {
-  useEffect(() => {
-    sortProductsInView();
-    // if (!productsInView) return;
-
-    // if (getSortBy === 'z-a') {
-    //   setProductsInView(
-    //     productsInView.sort((a: Product, b: Product) => {
-    //       return a.name.toLowerCase() >= b.name.toLowerCase() ? -1 : 1;
-    //     })
-    //   );
-    // } else if (getSortBy === 'price-l-h') {
-    //   setProductsInView(
-    //     productsInView.sort((a: Product, b: Product) => {
-    //       return a.price >= b.price ? 1 : -1;
-    //     })
-    //   );
-    // } else if (getSortBy === 'price-h-l') {
-    //   setProductsInView(
-    //     productsInView.sort((a: Product, b: Product) => {
-    //       return a.price >= b.price ? -1 : 1;
-    //     })
-    //   );
-    // } else {
-    //   setProductsInView(
-    //     productsInView.sort((a: Product, b: Product) => {
-    //       return a.name.toLowerCase() >= b.name.toLowerCase() ? 1 : -1;
-    //     })
-    //   );
-    // }
-    // return () => setSortBy('');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getSortBy]);
-
+const SortByBar: React.FC<Props> = ({ getSortBy, setSortBy }) => {
   return (
     <div className='sort-by-bar-container'>
       <select
         name='sort-by-bar'
         id='sort-by-bar'
-        onInput={(e) => setSortBy(e.currentTarget.value)}
+        onChange={(e) => {
+          setSortBy(e.currentTarget.value);
+        }}
+        defaultValue={getSortBy}
       >
         <option value='a-z'>A-Z</option>
         <option value='z-a'>Z-A</option>

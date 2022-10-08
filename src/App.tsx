@@ -46,7 +46,9 @@ import CheckoutPage from './components/Pages/Shop/CheckoutPage';
 const App = () => {
   const [getUserInfo, setUserInfo] = useState<User | null>(null);
   const [getProducts, setProducts] = useState<Product[]>();
-  const [productsInView, setProductsInView] = useState<Product[]>();
+  const [productsInView, setProductsInView] = useState<Product[] | undefined>(
+    getProducts
+  );
   const [showAdminPanel, setShowAdminPanel] = useState<boolean>(false);
   const [getAdmins, setAdmins] = useState<string[]>([]);
   const [showWarningMsg, setWarningMsg] = useState<string>('');
@@ -55,6 +57,7 @@ const App = () => {
   const [showCart, setShowCart] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [showCheckout, setShowCheckout] = useState<boolean>(false);
+  const [getSortBy, setSortBy] = useState<string>('a-z');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -70,9 +73,36 @@ const App = () => {
     } catch (e) {
       setWarningMsg('Check your connection and try again.');
     }
-    setProductsInView(getProducts);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // FIXME:
+  useEffect(() => {
+    const sortProductsInView = (): Product[] | null => {
+      let result;
+
+      if (getSortBy === 'z-a') {
+        result = productsInView?.sort((a: Product, b: Product) => {
+          return a.name.toLowerCase() >= b.name.toLowerCase() ? -1 : 1;
+        });
+      } else if (getSortBy === 'price-l-h') {
+        result = productsInView?.sort((a: Product, b: Product) => {
+          return a.price >= b.price ? 1 : -1;
+        });
+      } else if (getSortBy === 'price-h-l') {
+        result = productsInView?.sort((a: Product, b: Product) => {
+          return a.price >= b.price ? -1 : 1;
+        });
+      } else {
+        result = productsInView?.sort((a: Product, b: Product) => {
+          return a.name.toLowerCase() >= b.name.toLowerCase() ? 1 : -1;
+        });
+      }
+      return result || null;
+    };
+    let result = sortProductsInView();
+    setProductsInView(result || undefined);
+  });
 
   useEffect(() => {
     fetchAdmins();
@@ -285,8 +315,10 @@ const App = () => {
           element={
             <Shop
               db={db}
-              productsInView={productsInView || getProducts}
+              productsInView={productsInView}
               setProductsInView={setProductsInView}
+              getSortBy={getSortBy}
+              setSortBy={setSortBy}
             />
           }
         />

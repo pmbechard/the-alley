@@ -1,9 +1,8 @@
 import { Firestore } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
-import ProductCard from './ProductCard';
 import SortByBar from './SortByBar';
-import loadingIcon from '../../../img/loading.png';
+import ShopProducts from './ShopProducts';
 
 interface Props {
   db: Firestore;
@@ -11,70 +10,28 @@ interface Props {
   setProductsInView: React.Dispatch<
     React.SetStateAction<Product[] | undefined>
   >;
+  getSortBy: string;
+  setSortBy: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Shop: React.FC<Props> = ({ db, productsInView, setProductsInView }) => {
-  const [getSortBy, setSortBy] = useState<string>('');
-
+const Shop: React.FC<Props> = ({
+  db,
+  productsInView,
+  setProductsInView,
+  getSortBy,
+  setSortBy,
+}) => {
   useEffect(() => {
     window.scroll(0, 0);
   });
 
-  const sortProductsInView = () => {
-    if (!productsInView) return;
-
-    if (getSortBy === 'z-a') {
-      setProductsInView(
-        productsInView.sort((a: Product, b: Product) => {
-          return a.name.toLowerCase() >= b.name.toLowerCase() ? -1 : 1;
-        })
-      );
-    } else if (getSortBy === 'price-l-h') {
-      setProductsInView(
-        productsInView.sort((a: Product, b: Product) => {
-          return a.price >= b.price ? 1 : -1;
-        })
-      );
-    } else if (getSortBy === 'price-h-l') {
-      setProductsInView(
-        productsInView.sort((a: Product, b: Product) => {
-          return a.price >= b.price ? -1 : 1;
-        })
-      );
-    } else {
-      setProductsInView(
-        productsInView.sort((a: Product, b: Product) => {
-          return a.name.toLowerCase() >= b.name.toLowerCase() ? 1 : -1;
-        })
-      );
-    }
-    return () => setSortBy('');
-  }
+  //FIXME: rendered Products updating one step behind
 
   return (
     <>
-      <SortByBar
-        productsInView={productsInView}
-        setProductsInView={setProductsInView}
-        getSortBy={getSortBy}
-        setSortBy={setSortBy}
-        sortProductsInView={sortProductsInView}
-      />
+      <SortByBar getSortBy={getSortBy} setSortBy={setSortBy} />
       <div className='shop-container'>
-        {productsInView ? (
-          productsInView.map((product) => {
-            return (
-              <ProductCard
-                key={product.name.replaceAll(' ', '-')}
-                product={product}
-              />
-            );
-          })
-        ) : (
-          <div className='shop-loading-container'>
-            <img className='loading-icon' src={loadingIcon} alt='loading' />
-          </div>
-        )}
+        <ShopProducts productsInView={productsInView} />
       </div>
     </>
   );

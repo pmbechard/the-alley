@@ -67,11 +67,11 @@ const Header: React.FC<Props> = ({
           <p className='user-greeting'>
             Hi, {getUserInfo.displayName?.split(' ')[0]}
           </p>
-          <div className='header-link'>
+          <div className='header-link' onClick={() => setShowCart(true)}>
             {getCartItems && getCartItems.length > 0 && (
               <div className='cart-counter'>{getTotalNumberOfCartItems()}</div>
             )}
-            <img src={cartIcon} alt='cart' onClick={() => setShowCart(true)} />
+            <img src={cartIcon} alt='cart' />
             Cart
           </div>
           <p onClick={signUserOut} className='header-link'>
