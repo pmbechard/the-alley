@@ -322,6 +322,22 @@ const App = () => {
             />
           }
         />
+        <Route
+          path='checkout'
+          element={
+            getCartItems && getCartItems.length > 0 ? (
+              <CheckoutPage
+                getCartItems={getCartItems}
+                setShowCheckout={setShowCheckout}
+              />
+            ) : (
+              <Home
+                getProducts={getProducts}
+                setProductsInView={setProductsInView}
+              />
+            )
+          }
+        />
         <Route path='*' element={<PageNotFound />} />
         <Route
           path='/'
@@ -357,13 +373,6 @@ const App = () => {
           setCartItems={setCartItems}
           setShowCart={setShowCart}
           modifyCartItem={modifyCartItem}
-          setShowCheckout={setShowCheckout}
-        />
-      )}
-
-      {showCheckout && (
-        <CheckoutPage
-          getCartItems={getCartItems}
           setShowCheckout={setShowCheckout}
         />
       )}

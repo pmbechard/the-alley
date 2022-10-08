@@ -4,6 +4,7 @@ import errorIcon from '../../../img/error.png';
 import cartIcon from '../../../img/cart.png';
 import backIcon from '../../../img/back.png';
 import QuantityBar from './QuantityBar';
+import { Link } from 'react-router-dom';
 
 interface Props {
   getCartItems: Product[] | undefined;
@@ -88,15 +89,17 @@ const CartModal: React.FC<Props> = ({
               <h2>Subtotal:</h2>
               <h2>${getTotal().toFixed(2)}</h2>
             </div>
-            <button
-              className='checkout-btn'
-              onClick={() => {
-                setShowCart(false);
-                setShowCheckout(true);
-              }}
-            >
-              Checkout
-            </button>
+            <Link to='checkout'>
+              <button
+                className='checkout-btn'
+                onClick={() => {
+                  setShowCart(false);
+                  setShowCheckout(true);
+                }}
+              >
+                Checkout
+              </button>
+            </Link>
           </>
         )}
       </div>

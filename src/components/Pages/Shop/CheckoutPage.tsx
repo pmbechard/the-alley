@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 import backIcon from '../../../img/back.png';
+import { Link } from 'react-router-dom';
 
 interface Props {
   getCartItems: Product[] | undefined;
@@ -18,14 +19,16 @@ const CheckoutPage: React.FC<Props> = ({ getCartItems, setShowCheckout }) => {
 
   return (
     <div className='checkout-container'>
-      <img
-        src={backIcon}
-        alt='back'
-        className='checkout-back-btn'
-        onClick={() => {
-          setShowCheckout(false);
-        }}
-      />
+      <Link to='/'>
+        <img
+          src={backIcon}
+          alt='back'
+          className='checkout-back-btn'
+          onClick={() => {
+            setShowCheckout(false);
+          }}
+        />
+      </Link>
       <h1>Checkout</h1>
       <div className='checkout-area'>
         {getCartItems?.map((item) => {
