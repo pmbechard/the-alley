@@ -579,6 +579,10 @@
   height: 100vh;
   width: 100vw;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .checkout-container .checkout-back-btn {
   position: absolute;
@@ -588,6 +592,31 @@
   width: auto;
   cursor: pointer;
   transition: opacity 0.2s ease-in-out;
+}
+.checkout-container .checkout-area {
+  border: 3px solid #111;
+  border-radius: 8px;
+  padding: 20px;
+}
+.checkout-container .checkout-area .checkout-item {
+  min-width: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid #eee;
+}
+.checkout-container .checkout-area .checkout-item .checkout-img-container img {
+  max-height: 120px;
+  max-width: 120px;
+}
+.checkout-container .checkout-area .checkout-subtotal-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
 }
 
 #admin-panel-btn {
