@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Product } from '../../Interfaces/ProductInterface';
 import SortByBar from './SortByBar';
 import ShopProducts from './ShopProducts';
+import { User } from 'firebase/auth';
 
 interface Props {
   db: Firestore;
@@ -12,6 +13,11 @@ interface Props {
   >;
   getSortBy: string;
   setSortBy: React.Dispatch<React.SetStateAction<string>>;
+  modifyCartItem: (product: Product, quantity: number) => Promise<void>;
+  getCartItems: Product[] | undefined;
+  getUserInfo: User | null;
+  setWarningMsg: React.Dispatch<React.SetStateAction<string>>;
+  addNewToCart: (product: Product) => Promise<void>
 }
 
 const Shop: React.FC<Props> = ({
@@ -20,6 +26,11 @@ const Shop: React.FC<Props> = ({
   setProductsInView,
   getSortBy,
   setSortBy,
+  modifyCartItem,
+  getCartItems,
+  getUserInfo,
+  setWarningMsg,
+  addNewToCart
 }) => {
   useEffect(() => {
     window.scroll(0, 0);
@@ -31,7 +42,14 @@ const Shop: React.FC<Props> = ({
     <>
       <SortByBar getSortBy={getSortBy} setSortBy={setSortBy} />
       <div className='shop-container'>
-        <ShopProducts productsInView={productsInView} />
+        <ShopProducts
+          productsInView={productsInView}
+          getCartItems={getCartItems}
+          modifyCartItem={modifyCartItem}
+          getUserInfo={getUserInfo}
+          setWarningMsg={setWarningMsg}
+          addNewToCart={addNewToCart}
+        />
       </div>
     </>
   );

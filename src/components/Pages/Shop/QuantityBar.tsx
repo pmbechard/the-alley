@@ -19,13 +19,19 @@ const QuantityBar: React.FC<Props> = ({
       <img
         src={minusIcon}
         alt='remove'
-        onClick={() => modifyCartItem(product, quantity - 1)}
+        onClick={(e) => {
+          e.stopPropagation();
+          modifyCartItem(product, quantity - 1);
+        }}
       />
       <p>Quantity: {quantity}</p>
       <img
         src={plusIcon}
         alt='add'
-        onClick={() => modifyCartItem(product, quantity + 1)}
+        onClick={(e) => {
+          e.stopPropagation();
+          modifyCartItem(product, quantity + 1);
+        }}
       />
     </div>
   );

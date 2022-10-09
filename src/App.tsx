@@ -77,32 +77,32 @@ const App = () => {
   }, []);
 
   // FIXME:
-  useEffect(() => {
-    const sortProductsInView = (): Product[] | null => {
-      let result;
+  // useEffect(() => {
+  //   const sortProductsInView = (): Product[] | null => {
+  //     let result;
 
-      if (getSortBy === 'z-a') {
-        result = productsInView?.sort((a: Product, b: Product) => {
-          return a.name.toLowerCase() >= b.name.toLowerCase() ? -1 : 1;
-        });
-      } else if (getSortBy === 'price-l-h') {
-        result = productsInView?.sort((a: Product, b: Product) => {
-          return a.price >= b.price ? 1 : -1;
-        });
-      } else if (getSortBy === 'price-h-l') {
-        result = productsInView?.sort((a: Product, b: Product) => {
-          return a.price >= b.price ? -1 : 1;
-        });
-      } else {
-        result = productsInView?.sort((a: Product, b: Product) => {
-          return a.name.toLowerCase() >= b.name.toLowerCase() ? 1 : -1;
-        });
-      }
-      return result || null;
-    };
-    let result = sortProductsInView();
-    setProductsInView(result || undefined);
-  });
+  //     if (getSortBy === 'z-a') {
+  //       result = productsInView?.sort((a: Product, b: Product) => {
+  //         return a.name.toLowerCase() >= b.name.toLowerCase() ? -1 : 1;
+  //       });
+  //     } else if (getSortBy === 'price-l-h') {
+  //       result = productsInView?.sort((a: Product, b: Product) => {
+  //         return a.price >= b.price ? 1 : -1;
+  //       });
+  //     } else if (getSortBy === 'price-h-l') {
+  //       result = productsInView?.sort((a: Product, b: Product) => {
+  //         return a.price >= b.price ? -1 : 1;
+  //       });
+  //     } else {
+  //       result = productsInView?.sort((a: Product, b: Product) => {
+  //         return a.name.toLowerCase() >= b.name.toLowerCase() ? 1 : -1;
+  //       });
+  //     }
+  //     return result || null;
+  //   };
+  //   let result = sortProductsInView();
+  //   setProductsInView(result || undefined);
+  // }, [getSortBy, productsInView]);
 
   useEffect(() => {
     fetchAdmins();
@@ -239,9 +239,15 @@ const App = () => {
   const addNewToCart = async (product: Product): Promise<void> => {
     setShowLoading(true);
     try {
-      await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
-        [product.name]: { ...product, quantity: 1 },
-      });
+      try {
+        await updateDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+          [product.name]: { ...product, quantity: 1 },
+        });
+      } catch (e) {
+        await setDoc(doc(db, 'cart', `${getUserInfo?.email}`), {
+          [product.name]: { ...product, quantity: 1 },
+        });
+      }
     } catch (e) {
       setWarningMsg("Can't update. Check your connection and try again.");
     }
@@ -319,6 +325,11 @@ const App = () => {
               setProductsInView={setProductsInView}
               getSortBy={getSortBy}
               setSortBy={setSortBy}
+              modifyCartItem={modifyCartItem}
+              getCartItems={getCartItems}
+              getUserInfo={getUserInfo}
+              setWarningMsg={setWarningMsg}
+              addNewToCart={addNewToCart}
             />
           }
         />

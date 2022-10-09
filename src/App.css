@@ -432,6 +432,14 @@
   align-items: center;
   align-items: flex-start;
 }
+.product-card .card-info-area .product-card-add-to-cart-icon {
+  margin-top: 5px;
+  height: 30px;
+  width: auto;
+}
+.product-card .card-info-area .quantity-bar-container {
+  padding: 5px;
+}
 
 .product-card-link {
   text-decoration: none;
