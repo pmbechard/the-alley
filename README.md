@@ -9,3 +9,4 @@ Includes user authentication with sign-in persistence and cart item storage; an 
 <img src="./preview-1.png" alt="preview-1">
 <img src="./preview-2.png" alt="preview-2">
 <img src="./preview-3.png" alt="preview-3">
+<img src="./preview-4.png" alt="preview-4">
