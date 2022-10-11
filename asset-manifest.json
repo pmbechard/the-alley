@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/the-alley/static/css/main.87280f20.css",
+    "main.js": "/the-alley/static/js/main.d8e117c3.js",
+    "index.html": "/the-alley/index.html",
+    "main.87280f20.css.map": "/the-alley/static/css/main.87280f20.css.map",
+    "main.d8e117c3.js.map": "/the-alley/static/js/main.d8e117c3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.87280f20.css",
+    "static/js/main.d8e117c3.js"
+  ]
+}
