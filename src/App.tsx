@@ -334,7 +334,7 @@ const App = () => {
           }
         />
         <Route
-          path='checkout'
+          path='/checkout'
           element={
             getCartItems && getCartItems.length > 0 ? (
               <CheckoutPage
@@ -349,7 +349,16 @@ const App = () => {
             )
           }
         />
-        <Route path='*' element={<PageNotFound />} />
+        <Route path='/*' element={<PageNotFound />} />
+        <Route
+          path='/the-alley'
+          element={
+            <Home
+              getProducts={getProducts}
+              setProductsInView={setProductsInView}
+            />
+          }
+        />
         <Route
           path='/'
           element={
