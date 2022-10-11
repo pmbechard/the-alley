@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/the-alley/static/css/main.87280f20.css",
-    "main.js": "/the-alley/static/js/main.bcd7f78f.js",
+    "main.js": "/the-alley/static/js/main.487acb1c.js",
     "index.html": "/the-alley/index.html",
     "main.87280f20.css.map": "/the-alley/static/css/main.87280f20.css.map",
-    "main.bcd7f78f.js.map": "/the-alley/static/js/main.bcd7f78f.js.map"
+    "main.487acb1c.js.map": "/the-alley/static/js/main.487acb1c.js.map"
   },
   "entrypoints": [
     "static/css/main.87280f20.css",
-    "static/js/main.bcd7f78f.js"
+    "static/js/main.487acb1c.js"
   ]
 }
